@@ -1,0 +1,389 @@
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market Revenue Potential - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate-900 */
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Card Styles */
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate-800/50 */
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .highlight-card {
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        /* Typography */
+        .mono-stat {
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: -0.5px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        /* Unit Economics Visuals */
+        .unit-bar-container {
+            width: 100%;
+            height: 24px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-radius: 4px;
+            display: flex;
+            overflow: hidden;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .unit-cost {
+            height: 100%;
+            background-color: #ef4444; /* Red for cost */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .unit-margin {
+            height: 100%;
+            background-color: #10b981; /* Green for margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white; /* Slate-900 text */
+            font-weight: bold;
+        }
+
+        /* ARPU Table */
+        .arpu-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .arpu-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Chart Container */
+        .chart-wrapper {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(51, 65, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-sack-dollar text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Market Revenue Potential</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="flex-1 w-full grid grid-cols-12 gap-8 p-10 relative z-10">
+<!-- Column 1: Top Line Summary (3 Cols) -->
+<div class="col-span-3 flex flex-col gap-6">
+<div class="glass-panel flex-none">
+<div class="card-title"><i class="fas fa-bullseye text-red-400"></i>Annual Revenue Target</div>
+<div class="mt-2">
+<p class="text-5xl font-bold text-white mono-stat tracking-tighter">$60M</p>
+<p class="text-sm text-green-400 font-medium mt-2 flex items-center">
+<i class="fas fa-arrow-up mr-1"></i> Stabilized ARR by Year 5
+                    </p>
+</div>
+<div class="mt-6 border-t border-gray-700 pt-4">
+<div class="flex justify-between items-center mb-2">
+<p class="text-xs text-gray-400">Gross Margin</p>
+<p class="text-sm font-bold text-white">78%</p>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex justify-between items-center mb-2">
+<p class="text-xs text-gray-400">Market Penetration</p>
+<p class="text-sm font-bold text-white">45%</p>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full">
+<div class="bg-blue-500 h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+<p class="text-[10px] text-gray-500 mt-2">Targeting 40+ banks &amp; 1M+ SMEs</p>
+</div>
+</div>
+<div class="glass-panel flex-1 justify-center">
+<p class="text-sm text-gray-300 font-semibold mb-3">Key Revenue Drivers</p>
+<ul class="space-y-3">
+<li class="flex items-start">
+<i class="fas fa-check-circle text-blue-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-400">Mandatory credit checks for all bank loans &gt;$10k</p>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-blue-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-400">API subscription fees for Fintech integration</p>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-blue-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-400">Value-added fraud scoring services</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- Column 2: Unit Economics & ARPU (4 Cols) -->
+<div class="col-span-4 flex flex-col gap-6">
+<!-- Unit Economics -->
+<div class="glass-panel">
+<div class="card-title"><i class="fas fa-tags text-yellow-400"></i>Unit Economics</div>
+<div class="mb-4">
+<div class="flex justify-between text-xs mb-1">
+<p class="text-white font-semibold">Credit Report Pull</p>
+<p class="text-gray-400">Price: $2.50</p>
+</div>
+<div class="unit-bar-container">
+<div class="unit-cost" style="width: 20%">$0.50 Cost</div>
+<div class="unit-margin" style="width: 80%">$2.00 Margin</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<p class="text-white font-semibold">API Call (Scoring)</p>
+<p class="text-gray-400">Price: $0.15</p>
+</div>
+<div class="unit-bar-container">
+<div class="unit-cost" style="width: 10%">$0.015</div>
+<div class="unit-margin" style="width: 90%">90% Margin</div>
+</div>
+</div>
+<p class="text-[10px] text-gray-500 mt-3 italic">*High fixed leverage on infrastructure costs allows for significant margin expansion at scale.</p>
+</div>
+<!-- ARPU Table -->
+<div class="glass-panel flex-1">
+<div class="card-title"><i class="fas fa-users text-purple-400"></i>ARPU by Lender Tier</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="arpu-row">
+<div>
+<p class="text-sm font-bold text-white">Tier 1 Banks</p>
+<p class="text-[10px] text-gray-400">Top 5 Commercial Banks</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-green-400 mono-stat">$1.2M</p>
+<p class="text-[10px] text-gray-500">per year</p>
+</div>
+</div>
+<div class="arpu-row">
+<div>
+<p class="text-sm font-bold text-white">Tier 2 Banks</p>
+<p class="text-[10px] text-gray-400">15 Regional Banks</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-green-400 mono-stat">$350k</p>
+<p class="text-[10px] text-gray-500">per year</p>
+</div>
+</div>
+<div class="arpu-row">
+<div>
+<p class="text-sm font-bold text-white">Fintech / MFIs</p>
+<p class="text-[10px] text-gray-400">50+ Digital Lenders</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-green-400 mono-stat">$50k</p>
+<p class="text-[10px] text-gray-500">per year</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 3: Forecast Visualization (5 Cols) -->
+<div class="col-span-5 flex flex-col gap-6">
+<div class="glass-panel flex-1">
+<div class="flex justify-between items-center mb-4">
+<div class="card-title mb-0"><i class="fas fa-chart-line text-green-400"></i>5-Year Revenue Forecast</div>
+<div class="flex items-center space-x-3 text-[10px]">
+<div class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-1"></span>Base</div>
+<div class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-1"></span>Growth</div>
+</div>
+</div>
+<div class="chart-wrapper">
+<canvas id="revenueChart"></canvas>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-700">
+<div>
+<p class="text-xs text-gray-400">CAGR (Yr 1-5)</p>
+<p class="text-xl font-bold text-white mono-stat">68.5%</p>
+</div>
+<div>
+<p class="text-xs text-gray-400">Break-even Point</p>
+<p class="text-xl font-bold text-white mono-stat">Month 28</p>
+</div>
+</div>
+</div>
+<div class="highlight-card flex items-center justify-between">
+<div>
+<p class="text-sm font-bold text-blue-100">Market Expansion Opportunity</p>
+<p class="text-[10px] text-blue-300">Potential to monetize SME credit analytics for foreign investors</p>
+</div>
+<i class="fas fa-arrow-right text-blue-400"></i>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs bg-gray-900 bg-opacity-80 z-30">
+<p class="text-gray-500">Projections based on Central Bank lending volume estimates (2025-2030).</p>
+<p class="text-gray-600">Page 22</p>
+</div>
+</div>
+<script>
+    // Revenue Forecast Chart
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    
+    // Creating solid colors for fill
+    const blueFill = 'rgba(59, 130, 246, 0.2)';
+    const purpleFill = 'rgba(139, 92, 246, 0.2)';
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+            datasets: [
+                {
+                    label: 'Base Case Revenue',
+                    data: [5, 12, 28, 42, 55],
+                    borderColor: '#3b82f6', // Blue-500
+                    backgroundColor: blueFill,
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#1e293b',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                },
+                {
+                    label: 'Growth Scenario Revenue',
+                    data: [5, 18, 35, 52, 68],
+                    borderColor: '#a855f7', // Purple-500
+                    backgroundColor: purpleFill,
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    tension: 0.4,
+                    fill: '+1', // Fill to next dataset
+                    pointBackgroundColor: '#1e293b',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                    titleColor: '#fff',
+                    bodyColor: '#cbd5e1',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': $' + context.parsed.y + 'M';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: '#94a3b8', font: { size: 10, family: "'Inter', sans-serif" } }
+                },
+                y: {
+                    grid: { color: 'rgba(51, 65, 85, 0.3)', borderDash: [5, 5] },
+                    ticks: { 
+                        color: '#94a3b8', 
+                        font: { size: 10, family: "'Roboto Mono', monospace" },
+                        callback: function(value) { return '$' + value + 'M'; }
+                    },
+                    beginAtZero: true,
+                    suggestedMax: 80
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            }
+        }
+    });
+</script>
+</body>
+</html>

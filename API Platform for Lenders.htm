@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>API Platform - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* API Card Styles */
+        .api-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .api-card:hover {
+            background-color: rgba(30, 41, 59, 0.8);
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .method-pill {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .method-get { background-color: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .method-post { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+        .endpoint-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            color: #cbd5e1;
+        }
+
+        /* Code Block Styles */
+        .code-window {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            overflow: hidden;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .code-header {
+            background-color: #0f172a;
+            padding: 8px 12px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+        }
+        
+        .window-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 12px;
+        }
+        
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #f59e0b; }
+        .dot-green { background-color: #10b981; }
+
+        .code-content {
+            padding: 16px;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .syntax-key { color: #93c5fd; } /* Blue-300 */
+        .syntax-string { color: #86efac; } /* Green-300 */
+        .syntax-number { color: #fca5a5; } /* Red-300 */
+        .syntax-null { color: #fcd34d; } /* Yellow-300 */
+
+        /* Feature Tags */
+        .feature-tag {
+            display: flex;
+            align-items: center;
+            background-color: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        
+        .feature-icon {
+            margin-right: 6px;
+            color: #eab308;
+        }
+
+        /* Background grid */
+        .bg-grid {
+            background-image: linear-gradient(rgba(51, 65, 85, 0.05) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(51, 65, 85, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">API Platform for Lenders</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-8 gap-12 relative z-10">
+<!-- Left Column: Context & Developer Experience -->
+<div class="w-4/12 flex flex-col">
+<div class="mb-6">
+<h2 class="text-3xl font-bold text-white mb-3">Developer-First<br/>Integration</h2>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        A modern, RESTful API suite designed for seamless integration into existing banking core systems and fintech applications. Built for speed, security, and scalability.
+                    </p>
+</div>
+<!-- Security Specs -->
+<div class="mb-8">
+<p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Security &amp; Standards</p>
+<div class="flex flex-wrap gap-2">
+<div class="feature-tag">
+<i class="fas fa-lock feature-icon"></i>
+<span>OAuth2 Authentication</span>
+</div>
+<div class="feature-tag">
+<i class="fas fa-shield-alt feature-icon"></i>
+<span>TLS 1.3 Encryption</span>
+</div>
+<div class="feature-tag">
+<i class="fas fa-stopwatch feature-icon"></i>
+<span>99.99% SLA</span>
+</div>
+<div class="feature-tag">
+<i class="fas fa-code feature-icon"></i>
+<span>OpenAPI 3.0</span>
+</div>
+</div>
+</div>
+<!-- Code Preview -->
+<div class="mt-auto">
+<p class="text-xs text-gray-500 mb-2 font-mono">Sample Response: Credit Score</p>
+<div class="code-window shadow-2xl">
+<div class="code-header">
+<div class="window-dots">
+<div class="dot dot-red"></div>
+<div class="dot dot-yellow"></div>
+<div class="dot dot-green"></div>
+</div>
+<span class="text-xs text-gray-500 font-mono">response.json</span>
+</div>
+<div class="code-content">
+<pre style="margin:0">
+<span class="syntax-string">"status"</span>: <span class="syntax-number">200</span>,
+<span class="syntax-string">"data"</span>: {
+  <span class="syntax-string">"national_id"</span>: <span class="syntax-string">"1987452100"</span>,
+  <span class="syntax-string">"score"</span>: <span class="syntax-number">745</span>,
+  <span class="syntax-string">"rating"</span>: <span class="syntax-string">"VERY_GOOD"</span>,
+  <span class="syntax-string">"factors"</span>: [
+    {<span class="syntax-string">"code"</span>: <span class="syntax-string">"UTIL"</span>, <span class="syntax-string">"impact"</span>: <span class="syntax-string">"HIGH"</span>}
+  ],
+  <span class="syntax-string">"timestamp"</span>: <span class="syntax-string">"2026-03-12T10:45:00Z"</span>
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: API Catalog Grid -->
+<div class="w-8/12 flex flex-col justify-center">
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-lg font-bold text-white">Core API Endpoints</h3>
+<div class="text-xs text-gray-500 font-mono">v1.2.0 (Stable)</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- API 1: Credit Score -->
+<div class="api-card">
+<div class="flex items-center mb-2">
+<span class="method-pill method-get">GET</span>
+<span class="endpoint-text">/v1/scores/{id}</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">Credit Score Check</h4>
+<p class="text-xs text-gray-400 mb-3">Retrieve real-time credit score and primary risk factors for an individual.</p>
+<div class="mt-auto flex items-center text-[10px] text-gray-500">
+<i class="fas fa-bolt text-yellow-500 mr-1"></i>
+<span>Avg. Latency: 45ms</span>
+</div>
+</div>
+<!-- API 2: Credit Report -->
+<div class="api-card">
+<div class="flex items-center mb-2">
+<span class="method-pill method-get">GET</span>
+<span class="endpoint-text">/v1/reports/{id}</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">Full Credit Report</h4>
+<p class="text-xs text-gray-400 mb-3">Access detailed credit history, trade lines, inquiries, and public records.</p>
+<div class="mt-auto flex items-center text-[10px] text-gray-500">
+<i class="fas fa-file-alt text-blue-500 mr-1"></i>
+<span>PDF &amp; JSON Support</span>
+</div>
+</div>
+<!-- API 3: Loan Reporting -->
+<div class="api-card">
+<div class="flex items-center mb-2">
+<span class="method-pill method-post">POST</span>
+<span class="endpoint-text">/v1/loans/report</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">Loan Data Furnishing</h4>
+<p class="text-xs text-gray-400 mb-3">Submit new loan originations, repayment status updates, and closures.</p>
+<div class="mt-auto flex items-center text-[10px] text-gray-500">
+<i class="fas fa-sync text-green-500 mr-1"></i>
+<span>Batch or Real-time</span>
+</div>
+</div>
+<!-- API 4: Fraud Risk -->
+<div class="api-card">
+<div class="flex items-center mb-2">
+<span class="method-pill method-post">POST</span>
+<span class="endpoint-text">/v1/fraud/check</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">Fraud Risk Assessment</h4>
+<p class="text-xs text-gray-400 mb-3">Verify identity signals and check for loan stacking or anomalous behavior.</p>
+<div class="mt-auto flex items-center text-[10px] text-gray-500">
+<i class="fas fa-shield-alt text-red-500 mr-1"></i>
+<span>Risk Score: 0-100</span>
+</div>
+</div>
+<!-- API 5: Portfolio Monitor -->
+<div class="api-card border-l-4 border-l-purple-500">
+<div class="flex items-center mb-2">
+<span class="method-pill method-get">GET</span>
+<span class="endpoint-text">/v1/portfolio/alerts</span>
+</div>
+<h4 class="text-sm font-bold text-white mb-1">Portfolio Monitoring</h4>
+<p class="text-xs text-gray-400 mb-3">Get proactive alerts on changes in borrower creditworthiness within your portfolio.</p>
+<div class="mt-auto flex items-center text-[10px] text-gray-500">
+<i class="fas fa-bell text-purple-500 mr-1"></i>
+<span>Webhook Capable</span>
+</div>
+</div>
+<!-- Sandbox Info -->
+<div class="api-card border-dashed border-gray-600 bg-transparent flex items-center justify-center text-center cursor-pointer hover:bg-slate-800">
+<div class="p-3 rounded-full bg-slate-800 mb-2">
+<i class="fas fa-box-open text-gray-400"></i>
+</div>
+<h4 class="text-sm font-bold text-gray-300">Sandbox Environment</h4>
+<p class="text-[10px] text-gray-500">Test with synthetic data</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 14</p>
+</div>
+</div>
+</body>
+</html>

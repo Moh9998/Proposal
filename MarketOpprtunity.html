@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market Opportunity - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+        }
+        .bg-accent-subtle {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate-800/50 */
+        }
+        .kpi-card {
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            transition: transform 0.2s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            border-color: #eab308; /* Yellow-500 */
+        }
+        .chart-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Decor -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-blue-900 opacity-5"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-600 opacity-5 rounded-tr-full"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-10 border-b border-gray-800 bg-slate-900 bg-opacity-90">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Market Opportunity</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-10 z-10 gap-12">
+<!-- Left Column: Narrative & KPIs -->
+<div class="w-5/12 flex flex-col">
+<div class="mb-6">
+<h2 class="text-4xl font-bold mb-4 leading-tight">
+                        Unlocking Billions in <br/>
+<span class="text-yellow-500">Lending Capacity</span>
+</h2>
+<p class="text-gray-400 text-lg font-light leading-relaxed">
+                        A unified credit infrastructure transforms the financial landscape, turning underserved populations into bankable customers and enabling massive private sector growth.
+                    </p>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-2 gap-4 mt-auto">
+<!-- KPI 1 -->
+<div class="kpi-card p-5 rounded-xl">
+<div class="flex items-start justify-between mb-2">
+<div class="p-2 bg-blue-500 bg-opacity-20 rounded-lg text-blue-400">
+<i class="fas fa-users text-xl"></i>
+</div>
+<span class="text-xs text-gray-500 font-mono uppercase">Retail</span>
+</div>
+<p class="text-3xl font-bold text-white mb-1">20M+</p>
+<p class="text-sm text-gray-400">Potential Retail Borrowers</p>
+</div>
+<!-- KPI 2 -->
+<div class="kpi-card p-5 rounded-xl">
+<div class="flex items-start justify-between mb-2">
+<div class="p-2 bg-green-500 bg-opacity-20 rounded-lg text-green-400">
+<i class="fas fa-store text-xl"></i>
+</div>
+<span class="text-xs text-gray-500 font-mono uppercase">SME</span>
+</div>
+<p class="text-3xl font-bold text-white mb-1">1M+</p>
+<p class="text-sm text-gray-400">Addressable SMEs</p>
+</div>
+<!-- KPI 3 -->
+<div class="kpi-card p-5 rounded-xl">
+<div class="flex items-start justify-between mb-2">
+<div class="p-2 bg-purple-500 bg-opacity-20 rounded-lg text-purple-400">
+<i class="fas fa-building-columns text-xl"></i>
+</div>
+<span class="text-xs text-gray-500 font-mono uppercase">Lenders</span>
+</div>
+<p class="text-3xl font-bold text-white mb-1">40+</p>
+<p class="text-sm text-gray-400">Banks &amp; Institutions</p>
+</div>
+<!-- KPI 4 -->
+<div class="kpi-card p-5 rounded-xl border-yellow-900 bg-yellow-900 bg-opacity-10">
+<div class="flex items-start justify-between mb-2">
+<div class="p-2 bg-yellow-500 bg-opacity-20 rounded-lg text-yellow-500">
+<i class="fas fa-chart-line text-xl"></i>
+</div>
+<span class="text-xs text-yellow-600 font-mono uppercase">Growth</span>
+</div>
+<p class="text-3xl font-bold text-white mb-1">$15B+</p>
+<p class="text-sm text-gray-400">Est. Credit Capacity</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Chart -->
+<div class="w-7/12 bg-gray-900 bg-opacity-50 border border-gray-800 rounded-2xl p-8 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xl font-bold text-gray-200">Addressable Market Potential</h3>
+<div class="flex space-x-2">
+<span class="px-2 py-1 text-xs font-medium bg-gray-800 rounded text-gray-400">in USD Billions</span>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<canvas id="marketChart"></canvas>
+</div>
+<div class="mt-4 pt-4 border-t border-gray-800 text-xs text-gray-500 flex justify-between">
+<p>Source: Central Bank of Iraq &amp; World Bank Estimates (2025)</p>
+<p class="italic">Projected credit demand by segment</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 4</p>
+</div>
+</div>
+<script>
+        const ctx = document.getElementById('marketChart').getContext('2d');
+        
+        // Custom plugin to draw values on top of bars
+        const dataLabelPlugin = {
+            id: 'dataLabelPlugin',
+            afterDatasetsDraw(chart, args, options) {
+                const { ctx } = chart;
+                chart.data.datasets.forEach((dataset, i) => {
+                    const meta = chart.getDatasetMeta(i);
+                    meta.data.forEach((bar, index) => {
+                        const value = dataset.data[index];
+                        ctx.fillStyle = '#94a3b8'; // gray-400
+                        ctx.font = 'bold 14px Inter';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+                        ctx.fillText('$' + value + 'B', bar.x, bar.y - 8);
+                    });
+                });
+            }
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['SME Finance', 'Consumer Lending', 'Mortgages', 'Microfinance'],
+                datasets: [{
+                    label: 'Estimated Credit Demand',
+                    data: [12.5, 8.2, 15.0, 3.8],
+                    backgroundColor: [
+                        '#eab308', // Yellow
+                        '#3b82f6', // Blue
+                        '#10b981', // Green
+                        '#a855f7'  // Purple
+                    ],
+                    borderRadius: 6,
+                    barThickness: 60
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#cbd5e1',
+                        padding: 12,
+                        borderColor: '#334155',
+                        borderWidth: 1,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.raw + ' Billion';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(148, 163, 184, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Inter',
+                                size: 11
+                            },
+                            callback: function(value) {
+                                return '$' + value + 'B';
+                            }
+                        },
+                        border: {
+                            display: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#94a3b8',
+                            font: {
+                                family: 'Inter',
+                                size: 12,
+                                weight: '500'
+                            }
+                        },
+                        border: {
+                            display: false
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                }
+            },
+            plugins: [dataLabelPlugin]
+        });
+    </script>
+</body>
+</html>

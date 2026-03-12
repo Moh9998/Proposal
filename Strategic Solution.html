@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Strategic Solution - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Gradient-like effects using solid colors and opacity layers since gradients are restricted */
+        .bg-accent-light {
+            background-color: rgba(234, 179, 8, 0.05); /* Yellow-500 at 5% */
+        }
+        .capability-card {
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .capability-card:hover {
+            transform: translateX(-5px);
+            background-color: rgba(30, 41, 59, 0.9); /* Slate-800 */
+            border-color: rgba(234, 179, 8, 0.4);
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-accent-light clip-path-polygon"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 border-l-2 border-b-2 border-gray-800 opacity-30 rounded-bl-3xl ml-12 mb-12"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-10 border-b border-gray-800">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Strategic Solution</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-12 z-10 relative">
+<!-- Left Column: Solution Overview -->
+<div class="w-7/12 pr-16 flex flex-col justify-center">
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-yellow-500 text-xs font-bold tracking-wider uppercase mb-4">
+                        Platform Overview
+                    </span>
+<h2 class="text-5xl font-extrabold text-white leading-tight mb-8">
+                        The National Credit <br/>
+<span class="text-yellow-500">Intelligence Platform</span>
+</h2>
+<div class="w-20 h-1 bg-yellow-600 mb-8"></div>
+</div>
+<div class="space-y-6">
+<p class="text-xl text-gray-300 leading-relaxed font-light">
+                        NCSS-IQ acts as the central nervous system for Iraq's financial sector. It aggregates siloed data from banks, telecoms, and utilities to generate comprehensive <span class="text-white font-medium">credit insights</span>.
+                    </p>
+<p class="text-xl text-gray-300 leading-relaxed font-light">
+                        By replacing manual underwriting with automated, data-driven decisions, the platform reduces risk and unlocks capital for <span class="text-white font-medium">millions of underserved borrowers</span>.
+                    </p>
+</div>
+</div>
+<!-- Right Column: Core Capabilities -->
+<div class="w-5/12 pl-8 border-l border-gray-800 flex flex-col justify-center">
+<p class="text-sm text-gray-400 uppercase tracking-widest font-bold mb-8 pl-2">Core Capabilities</p>
+<div class="grid grid-cols-1 gap-4">
+<!-- Capability 1 -->
+<div class="capability-card bg-gray-900 bg-opacity-50 p-4 rounded-xl border border-gray-800 flex items-center space-x-5">
+<div class="w-12 h-12 rounded-lg bg-indigo-900 bg-opacity-30 flex items-center justify-center border border-indigo-800 flex-shrink-0">
+<i class="fas fa-tachometer-alt text-indigo-400 text-xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Credit Scoring</h3>
+<p class="text-gray-400 text-sm">Standardized 300-900 scoring model</p>
+</div>
+</div>
+<!-- Capability 2 -->
+<div class="capability-card bg-gray-900 bg-opacity-50 p-4 rounded-xl border border-gray-800 flex items-center space-x-5">
+<div class="w-12 h-12 rounded-lg bg-red-900 bg-opacity-30 flex items-center justify-center border border-red-800 flex-shrink-0">
+<i class="fas fa-user-shield text-red-400 text-xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Fraud Detection</h3>
+<p class="text-gray-400 text-sm">AI-driven identity &amp; loan stacking alerts</p>
+</div>
+</div>
+<!-- Capability 3 -->
+<div class="capability-card bg-gray-900 bg-opacity-50 p-4 rounded-xl border border-gray-800 flex items-center space-x-5">
+<div class="w-12 h-12 rounded-lg bg-blue-900 bg-opacity-30 flex items-center justify-center border border-blue-800 flex-shrink-0">
+<i class="fas fa-database text-blue-400 text-xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Data Aggregation</h3>
+<p class="text-gray-400 text-sm">Unifies bank, telecom, and utility data</p>
+</div>
+</div>
+<!-- Capability 4 -->
+<div class="capability-card bg-gray-900 bg-opacity-50 p-4 rounded-xl border border-gray-800 flex items-center space-x-5">
+<div class="w-12 h-12 rounded-lg bg-green-900 bg-opacity-30 flex items-center justify-center border border-green-800 flex-shrink-0">
+<i class="fas fa-code-branch text-green-400 text-xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Fintech API Platform</h3>
+<p class="text-gray-400 text-sm">Secure connectivity for digital lenders</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 5</p>
+</div>
+</div>
+</body>
+</html>

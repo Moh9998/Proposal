@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecosystem Architecture - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Background Effects */
+        .bg-circle-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+        
+        /* Node Styling */
+        .center-node {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            border: 4px solid #eab308;
+            box-shadow: 0 0 50px rgba(234, 179, 8, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .api-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px dashed #64748b;
+            transform: translate(-50%, -50%);
+            animation: spin 60s linear infinite;
+            z-index: 19;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .satellite-node {
+            width: 90px;
+            height: 90px;
+            border-radius: 16px; /* Slightly squared for architecture feel */
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .satellite-node:hover {
+            transform: scale(1.1);
+            border-color: #eab308;
+            z-index: 25;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Connector Lines */
+        .connection-line {
+            position: absolute;
+            background-color: #334155;
+            height: 2px;
+            transform-origin: 0 50%;
+            z-index: 5;
+        }
+
+        /* Legend Item */
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Node Specific Colors */
+        .node-bank { border-color: #3b82f6; } /* Blue */
+        .node-mfi { border-color: #6366f1; } /* Indigo */
+        .node-fintech { border-color: #a855f7; } /* Purple */
+        .node-data { border-color: #ec4899; } /* Pink */
+        .node-gov { border-color: #ef4444; } /* Red */
+        .node-utility { border-color: #06b6d4; } /* Cyan */
+        .node-telco { border-color: #f97316; } /* Orange */
+
+        /* Icon Colors */
+        .icon-bank { color: #3b82f6; }
+        .icon-mfi { color: #6366f1; }
+        .icon-fintech { color: #a855f7; }
+        .icon-data { color: #ec4899; }
+        .icon-gov { color: #ef4444; }
+        .icon-utility { color: #06b6d4; }
+        .icon-telco { color: #f97316; }
+
+        /* Label Tag */
+        .arch-label {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            position: absolute;
+            white-space: nowrap;
+            z-index: 8;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-circle-glow" style="width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(30, 41, 59, 0.8);"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-90">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-network-wired text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Ecosystem Architecture</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex px-16 py-8 relative z-10">
+<!-- Left Panel: Context -->
+<div class="w-1/4 flex flex-col justify-center pr-8 z-30">
+<h2 class="text-3xl font-bold mb-6 leading-tight">
+                    Unified Data <br/>
+<span class="text-yellow-500">Integration Layer</span>
+</h2>
+<p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                    A secure, real-time API mesh connects Iraq's diverse data landscape. The architecture normalizes structured banking data with unstructured alternative signals to build comprehensive credit profiles.
+                </p>
+<div class="bg-slate-900 bg-opacity-80 p-5 rounded-xl border border-gray-700 shadow-xl">
+<p class="text-xs font-bold text-gray-300 uppercase mb-4 tracking-wider">Integration Types</p>
+<div class="legend-item">
+<div class="legend-dot bg-blue-500"></div>
+<div>
+<p class="text-xs font-bold text-gray-200">Financial Data Sources</p>
+<p class="text-[10px] text-gray-500">Banks, MFIs, Fintechs</p>
+</div>
+</div>
+<div class="legend-item">
+<div class="legend-dot bg-orange-500"></div>
+<div>
+<p class="text-xs font-bold text-gray-200">Alternative Data</p>
+<p class="text-[10px] text-gray-500">Telecom, Utility, Wallet</p>
+</div>
+</div>
+<div class="legend-item">
+<div class="legend-dot bg-red-500"></div>
+<div>
+<p class="text-xs font-bold text-gray-200">Public Infrastructure</p>
+<p class="text-[10px] text-gray-500">Gov Registry, Legal</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Diagram Container -->
+<div class="w-3/4 relative h-full flex items-center justify-center" id="diagram-container">
+<!-- Architecture Ring -->
+<div class="api-ring"></div>
+<!-- Center Node (NCSS-IQ Platform) -->
+<div class="center-node">
+<div class="w-16 h-16 bg-yellow-600 rounded-lg flex items-center justify-center mb-3 shadow-inner transform rotate-45">
+<i class="fas fa-server text-white text-3xl transform -rotate-45"></i>
+</div>
+<p class="text-white font-bold text-base">NCSS-IQ</p>
+<p class="text-gray-400 text-xs text-center px-2">Central Risk Engine</p>
+</div>
+<!-- Satellite Nodes -->
+<!-- 1. Commercial Banks (Top) -->
+<div class="satellite-node node-bank" style="top: 10%; left: 50%; transform: translateX(-50%);">
+<i class="fas fa-university text-2xl icon-bank mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Banks</p>
+</div>
+<!-- 2. MFIs (Top Right) -->
+<div class="satellite-node node-mfi" style="top: 25%; left: 78%; transform: translateX(-50%);">
+<i class="fas fa-hand-holding-usd text-2xl icon-mfi mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">MFIs</p>
+</div>
+<!-- 3. Fintech Lenders (Right) -->
+<div class="satellite-node node-fintech" style="top: 50%; left: 85%; transform: translate(-50%, -50%);">
+<i class="fas fa-mobile-alt text-2xl icon-fintech mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Fintech</p>
+</div>
+<!-- 4. Data Providers (Bottom Right) -->
+<div class="satellite-node node-data" style="bottom: 25%; left: 78%; transform: translateX(-50%);">
+<i class="fas fa-database text-2xl icon-data mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Data Bureaus</p>
+</div>
+<!-- 5. Government (Bottom) -->
+<div class="satellite-node node-gov" style="bottom: 10%; left: 50%; transform: translateX(-50%);">
+<i class="fas fa-landmark text-2xl icon-gov mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Gov Registry</p>
+</div>
+<!-- 6. Utilities (Bottom Left) -->
+<div class="satellite-node node-utility" style="bottom: 25%; left: 22%; transform: translateX(-50%);">
+<i class="fas fa-bolt text-2xl icon-utility mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Utilities</p>
+</div>
+<!-- 7. Telecoms (Top Left) -->
+<div class="satellite-node node-telco" style="top: 25%; left: 22%; transform: translateX(-50%);">
+<i class="fas fa-satellite-dish text-2xl icon-telco mb-2"></i>
+<p class="text-[10px] font-bold text-gray-200 text-center uppercase tracking-wide">Telecoms</p>
+</div>
+<!-- Connection Lines SVG -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+<!-- Center to Banks (Top) -->
+<line stroke="#3b82f6" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="50%" y1="50%" y2="18%"></line>
+<!-- Center to MFIs (Top Right) -->
+<line stroke="#6366f1" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="75%" y1="50%" y2="30%"></line>
+<!-- Center to Fintech (Right) -->
+<line stroke="#a855f7" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="82%" y1="50%" y2="50%"></line>
+<!-- Center to Data (Bottom Right) -->
+<line stroke="#ec4899" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="75%" y1="50%" y2="70%"></line>
+<!-- Center to Gov (Bottom) -->
+<line stroke="#ef4444" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="50%" y1="50%" y2="82%"></line>
+<!-- Center to Utilities (Bottom Left) -->
+<line stroke="#06b6d4" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="25%" y1="50%" y2="70%"></line>
+<!-- Center to Telco (Top Left) -->
+<line stroke="#f97316" stroke-dasharray="4,4" stroke-opacity="0.6" stroke-width="2" x1="50%" x2="25%" y1="50%" y2="30%"></line>
+</svg>
+<!-- Architecture Flow Labels -->
+<div class="arch-label" style="top: 30%; left: 51%;">Loan Portfolio</div>
+<div class="arch-label" style="top: 38%; left: 65%;">Micro-loans</div>
+<div class="arch-label" style="top: 52%; left: 68%;">BNPL Data</div>
+<div class="arch-label" style="bottom: 38%; left: 65%;">Watchlists</div>
+<div class="arch-label" style="bottom: 30%; left: 51%;">Civil ID / Tax</div>
+<div class="arch-label" style="bottom: 38%; left: 28%;">Bill Payments</div>
+<div class="arch-label" style="top: 38%; left: 28%;">Top-up History</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 11</p>
+</div>
+</div>
+</body>
+</html>

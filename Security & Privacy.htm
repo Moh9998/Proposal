@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security &amp; Privacy - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate-900 */
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Security Card Styles */
+        .security-card {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate-800/50 */
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .security-card:hover {
+            background-color: rgba(30, 41, 59, 0.9);
+            border-color: #3b82f6; /* Blue-500 */
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        /* Tech Spec Pills */
+        .tech-pill {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .tech-pill i {
+            margin-right: 4px;
+            font-size: 9px;
+        }
+
+        /* Status Indicators */
+        .status-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            color: #10b981; /* Emerald-500 */
+            font-weight: 600;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 4px 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* Lock Animation Element */
+        .lock-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 6px;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Background Decorations */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-circle" style="top: -100px; right: -100px; width: 600px; height: 600px; background-color: #1d4ed8;"></div>
+<div class="bg-circle" style="bottom: -100px; left: -100px; width: 500px; height: 500px; background-color: #0f766e;"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-shield-halved text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Security &amp; Privacy Architecture</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 px-16 py-8 z-10 flex flex-col">
+<!-- Intro -->
+<div class="mb-8 flex justify-between items-end">
+<div class="max-w-2xl">
+<h2 class="text-2xl font-bold text-white mb-2">Defense-in-Depth Strategy</h2>
+<p class="text-gray-400 text-sm leading-relaxed">
+                    A comprehensive security framework designed to protect sensitive financial data through military-grade encryption, strict access controls, and privacy-by-design principles compliant with international banking standards.
+                </p>
+</div>
+<div class="flex space-x-3">
+<div class="flex items-center bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
+<i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+<p class="text-xs text-gray-300 font-mono">ISO 27001</p>
+</div>
+<div class="flex items-center bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
+<i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+<p class="text-xs text-gray-300 font-mono">SOC 2 Type II</p>
+</div>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-3 gap-6 flex-1">
+<!-- Card 1: Encryption -->
+<div class="security-card border-l-4 border-l-blue-500">
+<div class="status-badge"><div class="lock-indicator"></div>Active</div>
+<div class="icon-box bg-blue-900 bg-opacity-30 text-blue-400">
+<i class="fas fa-lock"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Data Encryption</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    End-to-end encryption for all sensitive borrower data. Keys managed via Hardware Security Modules (HSM).
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-key"></i> AES-256 (At Rest)</span>
+<span class="tech-pill"><i class="fas fa-network-wired"></i> TLS 1.3 (Transit)</span>
+<span class="tech-pill"><i class="fas fa-microchip"></i> FIPS 140-2 HSM</span>
+</div>
+</div>
+<!-- Card 2: Access Control -->
+<div class="security-card border-l-4 border-l-purple-500">
+<div class="status-badge"><div class="lock-indicator"></div>Enforced</div>
+<div class="icon-box bg-purple-900 bg-opacity-30 text-purple-400">
+<i class="fas fa-user-shield"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Identity &amp; Access</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    Strict Role-Based Access Control (RBAC) ensuring least-privilege access for all system operators and API consumers.
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-mobile-alt"></i> MFA Required</span>
+<span class="tech-pill"><i class="fas fa-id-badge"></i> OIDC / OAuth2</span>
+<span class="tech-pill"><i class="fas fa-user-tag"></i> Granular RBAC</span>
+</div>
+</div>
+<!-- Card 3: Audit & Monitoring -->
+<div class="security-card border-l-4 border-l-orange-500">
+<div class="status-badge"><div class="lock-indicator"></div>Logging</div>
+<div class="icon-box bg-orange-900 bg-opacity-30 text-orange-400">
+<i class="fas fa-file-contract"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Audit &amp; Compliance</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    Immutable audit logs recording every data access attempt, modification, and query for forensic analysis.
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-database"></i> WORM Storage</span>
+<span class="tech-pill"><i class="fas fa-search"></i> SIEM Integration</span>
+<span class="tech-pill"><i class="fas fa-clock"></i> 7-Year Retention</span>
+</div>
+</div>
+<!-- Card 4: Network Security -->
+<div class="security-card border-l-4 border-l-red-500">
+<div class="status-badge"><div class="lock-indicator"></div>Protected</div>
+<div class="icon-box bg-red-900 bg-opacity-30 text-red-400">
+<i class="fas fa-shield-virus"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Network Defense</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    Zero-trust network architecture with continuous packet inspection and automated threat mitigation.
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-brick-wall"></i> Next-Gen WAF</span>
+<span class="tech-pill"><i class="fas fa-ban"></i> DDoS Shield</span>
+<span class="tech-pill"><i class="fas fa-project-diagram"></i> Micro-segmentation</span>
+</div>
+</div>
+<!-- Card 5: Privacy by Design -->
+<div class="security-card border-l-4 border-l-green-500">
+<div class="status-badge"><div class="lock-indicator"></div>Compliant</div>
+<div class="icon-box bg-green-900 bg-opacity-30 text-green-400">
+<i class="fas fa-user-secret"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Privacy Preservation</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    Architected to protect PII. Data is masked in non-production environments and minimized in API responses.
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-mask"></i> Dynamic Masking</span>
+<span class="tech-pill"><i class="fas fa-eraser"></i> Data Minimization</span>
+<span class="tech-pill"><i class="fas fa-hand-paper"></i> Consent Mgmt</span>
+</div>
+</div>
+<!-- Card 6: Data Sovereignty -->
+<div class="security-card border-l-4 border-l-yellow-500">
+<div class="status-badge"><div class="lock-indicator"></div>Localized</div>
+<div class="icon-box bg-yellow-900 bg-opacity-30 text-yellow-500">
+<i class="fas fa-server"></i>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Data Sovereignty</h3>
+<p class="text-xs text-gray-400 mb-4 flex-1">
+                    All primary credit data is stored physically within the borders of Iraq, compliant with Central Bank data localization laws.
+                </p>
+<div class="mt-auto">
+<span class="tech-pill"><i class="fas fa-map-marker-alt"></i> Iraq-Based DC</span>
+<span class="tech-pill"><i class="fas fa-globe"></i> Geo-Fencing</span>
+<span class="tech-pill"><i class="fas fa-copy"></i> Local Redundancy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 17</p>
+</div>
+</div>
+</body>
+</html>

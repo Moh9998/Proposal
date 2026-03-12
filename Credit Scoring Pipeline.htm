@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Credit Scoring Pipeline - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Pipeline Flow Styles */
+        .pipeline-step {
+            position: relative;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .pipeline-step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-card {
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pipeline-step:hover .step-card {
+            background-color: rgba(30, 41, 59, 0.9);
+            border-color: #eab308;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: #0f172a;
+            border: 2px solid #eab308;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #eab308;
+            z-index: 20;
+            font-size: 14px;
+        }
+
+        /* Connecting Lines */
+        .connector-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #334155;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+        
+        .connector-arrow {
+            position: absolute;
+            top: 50%;
+            right: -12px;
+            transform: translateY(-50%);
+            color: #334155;
+            font-size: 14px;
+            z-index: 1;
+        }
+
+        /* Quality Gates */
+        .quality-gate {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px dashed #64748b;
+            padding: 8px 12px;
+            border-radius: 6px;
+            min-width: 140px;
+            text-align: center;
+        }
+        
+        .gate-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            height: 50px;
+            width: 1px;
+            border-left: 1px dashed #64748b;
+            z-index: 5;
+        }
+
+        /* Data pill tags */
+        .data-pill {
+            background-color: rgba(51, 65, 85, 0.5);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+            display: inline-block;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        /* Background grid */
+        .bg-grid {
+            background-image: linear-gradient(rgba(51, 65, 85, 0.1) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(51, 65, 85, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Decorative Background -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-blue-900 opacity-5 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-600 opacity-5 rounded-full filter blur-3xl pointer-events-none"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Credit Scoring Pipeline</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col px-16 py-8 relative z-10">
+<!-- Title Section -->
+<div class="mb-12">
+<h2 class="text-3xl font-bold text-white mb-2">End-to-End Scoring Process</h2>
+<p class="text-gray-400 text-sm max-w-3xl">
+                    A rigorous, automated data pipeline transforming raw inputs into actionable credit intelligence with integrated quality controls at every stage.
+                </p>
+</div>
+<!-- Pipeline Visual -->
+<div class="relative flex justify-between items-center w-full mt-4 pr-8">
+<!-- Background Connector Line -->
+<div class="absolute top-1/2 left-0 w-full h-1 bg-gray-800 -translate-y-1/2 z-0"></div>
+<!-- Step 1: Raw Data -->
+<div class="w-1/5 pipeline-step px-2">
+<div class="step-number">1</div>
+<div class="step-card rounded-xl p-5 relative">
+<div class="flex items-center mb-4 text-blue-400">
+<i class="fas fa-database text-xl mr-3"></i>
+<h3 class="font-bold text-white text-sm uppercase tracking-wide">Ingestion</h3>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs text-gray-400 mb-3">Aggregation of structured and unstructured data sources.</p>
+<div class="flex flex-wrap gap-2">
+<span class="data-pill">Bank Records</span>
+<span class="data-pill">Telco Logs</span>
+<span class="data-pill">Utility Bills</span>
+<span class="data-pill">Govt Registry</span>
+</div>
+</div>
+<div class="mt-auto pt-3 border-t border-gray-700">
+<div class="flex items-center text-xs text-green-400">
+<i class="fas fa-check-circle mr-1"></i> SSL/TLS Encryption
+                            </div>
+</div>
+</div>
+<!-- Gate -->
+<div class="gate-line"></div>
+<div class="quality-gate">
+<div class="flex items-center justify-center text-red-400 mb-1">
+<i class="fas fa-filter text-xs mr-2"></i>
+<span class="text-[10px] font-bold uppercase">Gate 1</span>
+</div>
+<p class="text-[10px] text-gray-300">Data Integrity Check</p>
+</div>
+</div>
+<!-- Arrow -->
+<i class="fas fa-chevron-right text-gray-600 z-10"></i>
+<!-- Step 2: Processing -->
+<div class="w-1/5 pipeline-step px-2">
+<div class="step-number">2</div>
+<div class="step-card rounded-xl p-5 relative">
+<div class="flex items-center mb-4 text-purple-400">
+<i class="fas fa-cogs text-xl mr-3"></i>
+<h3 class="font-bold text-white text-sm uppercase tracking-wide">Feature Eng.</h3>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs text-gray-400 mb-3">Standardization and variable creation for modeling.</p>
+<div class="flex flex-wrap gap-2">
+<span class="data-pill">Identity Resolution</span>
+<span class="data-pill">Variable Transformation</span>
+<span class="data-pill">Missing Value Imputation</span>
+</div>
+</div>
+<div class="mt-auto pt-3 border-t border-gray-700">
+<div class="flex items-center text-xs text-blue-400">
+<i class="fas fa-robot mr-1"></i> Auto-Scaling
+                            </div>
+</div>
+</div>
+<!-- Gate -->
+<div class="gate-line"></div>
+<div class="quality-gate">
+<div class="flex items-center justify-center text-red-400 mb-1">
+<i class="fas fa-filter text-xs mr-2"></i>
+<span class="text-[10px] font-bold uppercase">Gate 2</span>
+</div>
+<p class="text-[10px] text-gray-300">Outlier Detection</p>
+</div>
+</div>
+<!-- Arrow -->
+<i class="fas fa-chevron-right text-gray-600 z-10"></i>
+<!-- Step 3: Modeling -->
+<div class="w-1/5 pipeline-step px-2">
+<div class="step-number">3</div>
+<div class="step-card rounded-xl p-5 relative border-yellow-600 border-opacity-30 bg-yellow-900 bg-opacity-10">
+<div class="flex items-center mb-4 text-yellow-500">
+<i class="fas fa-brain text-xl mr-3"></i>
+<h3 class="font-bold text-white text-sm uppercase tracking-wide">Risk Models</h3>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs text-gray-400 mb-3">Application of statistical and ML algorithms to assess risk.</p>
+<div class="flex flex-wrap gap-2">
+<span class="data-pill border-yellow-800 text-yellow-100">Logistic Regression</span>
+<span class="data-pill border-yellow-800 text-yellow-100">Gradient Boosting</span>
+<span class="data-pill border-yellow-800 text-yellow-100">Scorecard Gen</span>
+</div>
+</div>
+<div class="mt-auto pt-3 border-t border-gray-700">
+<div class="flex items-center text-xs text-yellow-500">
+<i class="fas fa-bolt mr-1"></i> Real-time Inference
+                            </div>
+</div>
+</div>
+<!-- Gate -->
+<div class="gate-line"></div>
+<div class="quality-gate">
+<div class="flex items-center justify-center text-red-400 mb-1">
+<i class="fas fa-filter text-xs mr-2"></i>
+<span class="text-[10px] font-bold uppercase">Gate 3</span>
+</div>
+<p class="text-[10px] text-gray-300">Bias &amp; Fairness Test</p>
+</div>
+</div>
+<!-- Arrow -->
+<i class="fas fa-chevron-right text-gray-600 z-10"></i>
+<!-- Step 4: Output -->
+<div class="w-1/5 pipeline-step px-2">
+<div class="step-number">4</div>
+<div class="step-card rounded-xl p-5 relative">
+<div class="flex items-center mb-4 text-green-400">
+<i class="fas fa-paper-plane text-xl mr-3"></i>
+<h3 class="font-bold text-white text-sm uppercase tracking-wide">Delivery</h3>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs text-gray-400 mb-3">Secure distribution of scores and reports to stakeholders.</p>
+<div class="flex flex-wrap gap-2">
+<span class="data-pill">Lender API</span>
+<span class="data-pill">Citizen Portal</span>
+<span class="data-pill">Monitor Dashboard</span>
+</div>
+</div>
+<div class="mt-auto pt-3 border-t border-gray-700">
+<div class="flex items-center text-xs text-green-400">
+<i class="fas fa-clock mr-1"></i> &lt; 200ms Latency
+                            </div>
+</div>
+</div>
+<!-- Gate -->
+<div class="gate-line"></div>
+<div class="quality-gate">
+<div class="flex items-center justify-center text-red-400 mb-1">
+<i class="fas fa-filter text-xs mr-2"></i>
+<span class="text-[10px] font-bold uppercase">Gate 4</span>
+</div>
+<p class="text-[10px] text-gray-300">Access Control (RBAC)</p>
+</div>
+</div>
+</div>
+<!-- Monitoring Legend -->
+<div class="absolute top-8 right-16 flex space-x-6 bg-gray-900 bg-opacity-50 p-3 rounded-lg border border-gray-700">
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+<p class="text-[10px] text-gray-400 uppercase tracking-wider">Automated</p>
+</div>
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+<p class="text-[10px] text-gray-400 uppercase tracking-wider">Quality Gate</p>
+</div>
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
+<p class="text-[10px] text-gray-400 uppercase tracking-wider">AI/ML Core</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 12</p>
+</div>
+</div>
+</body>
+</html>

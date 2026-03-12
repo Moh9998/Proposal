@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Regulatory Oversight - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate-900 */
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Dashboard specific styles */
+        .dashboard-card {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate-800/50 */
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
+
+        .kpi-value {
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: -1px;
+        }
+
+        .trend-up { color: #34d399; } /* Green-400 */
+        .trend-down { color: #f87171; } /* Red-400 */
+        .trend-neutral { color: #fbbf24; } /* Amber-400 */
+
+        /* Chart containers to ensure sizing */
+        .chart-container {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            min-height: 0; /* Important for flex child */
+        }
+
+        /* Status Indicators */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .status-healthy { background-color: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+        .status-warning { background-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+        .status-critical { background-color: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+
+        /* Grid Background */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(51, 65, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Custom Scrollbar for list */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 0.5); 
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Header -->
+<div class="w-full h-20 px-12 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-landmark text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">Central Bank of Iraq</p>
+<p class="text-white font-semibold text-lg">Regulatory Oversight Dashboard</p>
+</div>
+</div>
+<div class="flex items-center space-x-6 text-sm">
+<div class="flex items-center text-gray-400">
+<i class="far fa-clock mr-2"></i>
+<span>Last Updated: 14:05 PM</span>
+</div>
+<div class="bg-slate-800 px-3 py-1 rounded border border-slate-700 text-gray-300">
+<i class="fas fa-globe mr-2 text-blue-400"></i>National View
+            </div>
+</div>
+</div>
+<!-- Main Dashboard Content -->
+<div class="flex-1 p-8 flex flex-col gap-6 overflow-hidden">
+<!-- Top Row: High-Level KPIs -->
+<div class="grid grid-cols-4 gap-6 h-32">
+<!-- KPI 1 -->
+<div class="dashboard-card justify-between border-l-4 border-l-blue-500">
+<div class="flex justify-between items-start">
+<p class="text-xs text-gray-400 uppercase font-semibold">Total Credit Exposure</p>
+<i class="fas fa-chart-line text-blue-500 opacity-50"></i>
+</div>
+<div>
+<p class="text-2xl font-bold text-white kpi-value">IQD 42.8 T</p>
+<div class="flex items-center text-xs mt-1">
+<span class="trend-up mr-1"><i class="fas fa-arrow-up"></i> 12.4%</span>
+<span class="text-gray-500">vs last quarter</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="dashboard-card justify-between border-l-4 border-l-purple-500">
+<div class="flex justify-between items-start">
+<p class="text-xs text-gray-400 uppercase font-semibold">SME Lending Ratio</p>
+<i class="fas fa-store text-purple-500 opacity-50"></i>
+</div>
+<div>
+<p class="text-2xl font-bold text-white kpi-value">18.2%</p>
+<div class="flex items-center text-xs mt-1">
+<span class="trend-up mr-1"><i class="fas fa-arrow-up"></i> 4.1%</span>
+<span class="text-gray-500">YoY Growth</span>
+</div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="dashboard-card justify-between border-l-4 border-l-red-500">
+<div class="flex justify-between items-start">
+<p class="text-xs text-gray-400 uppercase font-semibold">Non-Performing Loans</p>
+<i class="fas fa-exclamation-triangle text-red-500 opacity-50"></i>
+</div>
+<div>
+<p class="text-2xl font-bold text-white kpi-value">3.4%</p>
+<div class="flex items-center text-xs mt-1">
+<span class="trend-up text-green-400 mr-1"><i class="fas fa-arrow-down"></i> 0.8%</span>
+<span class="text-gray-500">Improvement</span>
+</div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="dashboard-card justify-between border-l-4 border-l-yellow-500">
+<div class="flex justify-between items-start">
+<p class="text-xs text-gray-400 uppercase font-semibold">Systemic Risk Index</p>
+<i class="fas fa-shield-alt text-yellow-500 opacity-50"></i>
+</div>
+<div>
+<p class="text-2xl font-bold text-white kpi-value">LOW</p>
+<div class="flex items-center text-xs mt-1">
+<span class="status-healthy status-dot"></span>
+<span class="text-gray-400">Stable Outlook</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Row: Charts -->
+<div class="grid grid-cols-3 gap-6 flex-1 min-h-0">
+<!-- Chart 1: Lending Exposure by Sector -->
+<div class="dashboard-card col-span-2">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold text-gray-200">Credit Exposure Analysis by Sector</h3>
+<div class="flex space-x-2">
+<span class="text-[10px] bg-slate-700 px-2 py-0.5 rounded text-gray-300">Retail</span>
+<span class="text-[10px] bg-slate-700 px-2 py-0.5 rounded text-gray-300">Corporate</span>
+<span class="text-[10px] bg-slate-700 px-2 py-0.5 rounded text-gray-300">SME</span>
+</div>
+</div>
+<div class="chart-container">
+<canvas id="exposureChart"></canvas>
+</div>
+</div>
+<!-- Chart 2: Regional Risk Heatmap (Simulated List) -->
+<div class="dashboard-card col-span-1">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold text-gray-200">Regional Risk &amp; Activity</h3>
+<i class="fas fa-map-marked-alt text-gray-500"></i>
+</div>
+<div class="flex-1 overflow-y-auto custom-scroll pr-2">
+<div class="space-y-3">
+<!-- Region Item -->
+<div class="flex items-center justify-between p-2 bg-slate-800 rounded bg-opacity-50">
+<div>
+<p class="text-xs font-bold text-white">Baghdad</p>
+<p class="text-[10px] text-gray-400">Vol: High • Risk: Low</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-mono text-green-400">92/100</p>
+<div class="w-16 h-1 bg-gray-700 rounded mt-1"><div class="h-full bg-green-500 rounded" style="width: 92%"></div></div>
+</div>
+</div>
+<!-- Region Item -->
+<div class="flex items-center justify-between p-2 bg-slate-800 rounded bg-opacity-50">
+<div>
+<p class="text-xs font-bold text-white">Basra</p>
+<p class="text-[10px] text-gray-400">Vol: Med • Risk: Low</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-mono text-blue-400">85/100</p>
+<div class="w-16 h-1 bg-gray-700 rounded mt-1"><div class="h-full bg-blue-500 rounded" style="width: 85%"></div></div>
+</div>
+</div>
+<!-- Region Item -->
+<div class="flex items-center justify-between p-2 bg-slate-800 rounded bg-opacity-50">
+<div>
+<p class="text-xs font-bold text-white">Erbil</p>
+<p class="text-[10px] text-gray-400">Vol: Med • Risk: Med</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-mono text-yellow-400">78/100</p>
+<div class="w-16 h-1 bg-gray-700 rounded mt-1"><div class="h-full bg-yellow-500 rounded" style="width: 78%"></div></div>
+</div>
+</div>
+<!-- Region Item -->
+<div class="flex items-center justify-between p-2 bg-slate-800 rounded bg-opacity-50">
+<div>
+<p class="text-xs font-bold text-white">Nineveh</p>
+<p class="text-[10px] text-gray-400">Vol: Low • Risk: Watch</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-mono text-orange-400">65/100</p>
+<div class="w-16 h-1 bg-gray-700 rounded mt-1"><div class="h-full bg-orange-500 rounded" style="width: 65%"></div></div>
+</div>
+</div>
+<!-- Region Item -->
+<div class="flex items-center justify-between p-2 bg-slate-800 rounded bg-opacity-50">
+<div>
+<p class="text-xs font-bold text-white">Anbar</p>
+<p class="text-[10px] text-gray-400">Vol: Low • Risk: High</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-mono text-red-400">54/100</p>
+<div class="w-16 h-1 bg-gray-700 rounded mt-1"><div class="h-full bg-red-500 rounded" style="width: 54%"></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Alerts & SME Insight -->
+<div class="grid grid-cols-3 gap-6 h-40">
+<!-- Systemic Alerts -->
+<div class="dashboard-card col-span-1 border-t-2 border-t-red-500">
+<h3 class="text-xs font-bold text-gray-400 uppercase mb-3">Systemic Alerts</h3>
+<div class="space-y-2">
+<div class="flex items-start">
+<i class="fas fa-bell text-yellow-500 text-xs mt-1 mr-2"></i>
+<div>
+<p class="text-xs text-white">Sector Concentration Risk: Real Estate</p>
+<p class="text-[10px] text-gray-500">Exposure approaching 25% threshold in Baghdad region.</p>
+</div>
+</div>
+<div class="flex items-start">
+<i class="fas fa-info-circle text-blue-500 text-xs mt-1 mr-2"></i>
+<div>
+<p class="text-xs text-white">New Lender Onboarding</p>
+<p class="text-[10px] text-gray-500">3 Fintechs pending API certification.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SME Financing Trend -->
+<div class="dashboard-card col-span-2">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-sm font-bold text-gray-200">SME Financing Growth</h3>
+<div class="text-xs text-green-400 font-mono">+18% YoY</div>
+</div>
+<div class="chart-container">
+<canvas id="smeChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-10 border-t border-gray-800 px-12 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary - Central Bank View</p>
+<p>Page 16</p>
+</div>
+</div>
+<script>
+        // Chart 1: Exposure Chart (Bar/Line Combo)
+        const ctxExposure = document.getElementById('exposureChart').getContext('2d');
+        new Chart(ctxExposure, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Retail',
+                        data: [12, 14, 15, 18, 20, 22],
+                        backgroundColor: '#3b82f6', // Blue
+                        borderRadius: 4,
+                        barThickness: 12
+                    },
+                    {
+                        label: 'SME',
+                        data: [5, 6, 8, 9, 11, 13],
+                        backgroundColor: '#a855f7', // Purple
+                        borderRadius: 4,
+                        barThickness: 12
+                    },
+                    {
+                        label: 'Corporate',
+                        data: [30, 31, 29, 32, 33, 34],
+                        backgroundColor: '#64748b', // Slate
+                        borderRadius: 4,
+                        barThickness: 12
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 10 }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, color: '#334155' },
+                        ticks: { color: '#94a3b8', font: { size: 10 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(51, 65, 85, 0.3)', borderDash: [5, 5] },
+                        ticks: { color: '#94a3b8', font: { size: 10 } },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Chart 2: SME Financing Trend (Area)
+        const ctxSme = document.getElementById('smeChart').getContext('2d');
+        const gradientSme = ctxSme.createLinearGradient(0, 0, 0, 100);
+        gradientSme.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+        gradientSme.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+
+        new Chart(ctxSme, {
+            type: 'line',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [{
+                    label: 'Disbursed Volume (IQD Billions)',
+                    data: [45, 49, 55, 62, 70, 78, 85, 92],
+                    borderColor: '#10b981', // Emerald
+                    backgroundColor: gradientSme,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#64748b', font: { size: 9 } }
+                    },
+                    y: {
+                        display: false,
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

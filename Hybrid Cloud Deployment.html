@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hybrid Cloud Deployment - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Zone Containers */
+        .zone-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sovereign-zone {
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(234, 179, 8, 0.3); /* Yellow border */
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.05);
+        }
+
+        .public-zone {
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(59, 130, 246, 0.3); /* Blue border */
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.05);
+        }
+
+        /* Component Blocks inside Zones */
+        .component-block {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-square {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Connector Styling */
+        .connector-bridge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .bridge-line {
+            height: 4px;
+            width: 100%;
+            background-color: #475569;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .firewall-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ef4444;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Tags */
+        .zone-tag {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .tag-sovereign { background-color: rgba(234, 179, 8, 0.15); color: #fbbf24; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .tag-public { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+        /* Data Flow Animation Dots */
+        .flow-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(51, 65, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Decorative Map Outline */
+        .map-outline {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-network-wired text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Hybrid Cloud Architecture</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-8 relative z-10 gap-16 items-center justify-center">
+<!-- Left: Sovereign Zone -->
+<div class="w-5/12 h-full flex flex-col">
+<div class="mb-2 flex justify-between items-end">
+<h3 class="text-xl font-bold text-white">Sovereign Infrastructure</h3>
+<span class="text-xs text-gray-400"><i class="fas fa-map-marker-alt mr-1"></i> Baghdad DC</span>
+</div>
+<div class="zone-card sovereign-zone flex-1 p-6 relative">
+<!-- Background Label -->
+<div class="absolute bottom-4 right-4 text-6xl font-bold text-yellow-500 opacity-5 pointer-events-none">
+                    IRAQ
+                </div>
+<div class="mb-4">
+<span class="zone-tag tag-sovereign"><i class="fas fa-lock mr-2"></i>Restricted Zone</span>
+<p class="text-xs text-gray-400 mt-1">
+                        Physically located within Iraq. Houses PII, core credit registry, and master identity keys. No direct internet access.
+                    </p>
+</div>
+<!-- Components -->
+<div class="space-y-3 mt-4">
+<div class="component-block">
+<div class="icon-square bg-yellow-900 bg-opacity-30 text-yellow-500">
+<i class="fas fa-database"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Core Credit Database</p>
+<p class="text-[10px] text-gray-400 font-mono">Oracle Exadata / Postgres</p>
+</div>
+</div>
+<div class="component-block">
+<div class="icon-square bg-yellow-900 bg-opacity-30 text-yellow-500">
+<i class="fas fa-fingerprint"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Identity Vault</p>
+<p class="text-[10px] text-gray-400 font-mono">Biometric Storage (PII)</p>
+</div>
+</div>
+<div class="component-block">
+<div class="icon-square bg-yellow-900 bg-opacity-30 text-yellow-500">
+<i class="fas fa-key"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">HSM Cluster</p>
+<p class="text-[10px] text-gray-400 font-mono">FIPS 140-2 Level 3</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-gray-700">
+<div class="flex items-center text-[10px] text-yellow-500">
+<i class="fas fa-shield-alt mr-2"></i>
+<span>Air-gapped management plane</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Connector / Bridge -->
+<div class="connector-bridge">
+<div class="bridge-line"></div>
+<!-- Moving Dots Animation -->
+<div class="flow-dot bg-blue-400" id="dot1"></div>
+<div class="firewall-icon">
+<i class="fas fa-door-closed"></i>
+</div>
+<div class="bg-slate-900 px-2 py-1 border border-red-900 rounded text-[9px] text-red-400 mt-2 font-mono whitespace-nowrap z-20">
+                Secure Gateway
+            </div>
+</div>
+<!-- Right: Public Zone -->
+<div class="w-5/12 h-full flex flex-col">
+<div class="mb-2 flex justify-between items-end">
+<h3 class="text-xl font-bold text-white">Public Cloud Services</h3>
+<span class="text-xs text-gray-400"><i class="fas fa-globe mr-1"></i> Regional Region</span>
+</div>
+<div class="zone-card public-zone flex-1 p-6 relative">
+<!-- Background Label -->
+<div class="absolute bottom-4 right-4 text-6xl font-bold text-blue-500 opacity-5 pointer-events-none">
+                    CLOUD
+                </div>
+<div class="mb-4">
+<span class="zone-tag tag-public"><i class="fas fa-wifi mr-2"></i>DMZ / Public</span>
+<p class="text-xs text-gray-400 mt-1">
+                        Scalable infrastructure for API delivery, analytics, and citizen-facing portals. Processes anonymized or tokenized data.
+                    </p>
+</div>
+<!-- Components -->
+<div class="space-y-3 mt-4">
+<div class="component-block">
+<div class="icon-square bg-blue-900 bg-opacity-30 text-blue-400">
+<i class="fas fa-server"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">API Gateway</p>
+<p class="text-[10px] text-gray-400 font-mono">Rate Limiting &amp; Auth</p>
+</div>
+</div>
+<div class="component-block">
+<div class="icon-square bg-blue-900 bg-opacity-30 text-blue-400">
+<i class="fas fa-chart-pie"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Analytics Engine</p>
+<p class="text-[10px] text-gray-400 font-mono">BigQuery / Spark</p>
+</div>
+</div>
+<div class="component-block">
+<div class="icon-square bg-blue-900 bg-opacity-30 text-blue-400">
+<i class="fas fa-mobile-screen"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Citizen Portal Backend</p>
+<p class="text-[10px] text-gray-400 font-mono">Microservices / K8s</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-gray-700">
+<div class="flex items-center text-[10px] text-blue-400">
+<i class="fas fa-bolt mr-2"></i>
+<span>Auto-scaling &amp; DDoS Protection</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Legend -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs bg-gray-900 bg-opacity-80 z-30">
+<div class="flex space-x-6">
+<div class="flex items-center text-gray-400">
+<div class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
+<span>Sovereign (PII Storage)</span>
+</div>
+<div class="flex items-center text-gray-400">
+<div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+<span>Public (Processing &amp; Delivery)</span>
+</div>
+<div class="flex items-center text-gray-400">
+<div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+<span>Secure Boundary (Tokenization)</span>
+</div>
+</div>
+<p class="text-gray-600">Page 18</p>
+</div>
+</div>
+<script>
+        // Simple dot animation logic
+        const dot = document.getElementById('dot1');
+        let pos = 0;
+        let direction = 1;
+        
+        function animateDot() {
+            // Move back and forth
+            pos += 1 * direction;
+            if (pos > 100) {
+                pos = -100;
+            }
+            
+            // Map pos to css left property relative to center
+            // This is a simplified visual effect
+            const bridgeWidth = 80;
+            const currentX = (pos / 100) * (bridgeWidth/2);
+            
+            dot.style.transform = `translate(${currentX}px, -50%)`;
+            dot.style.opacity = Math.abs(pos) < 20 ? 0 : 1; // Hide behind lock
+
+            requestAnimationFrame(animateDot);
+        }
+        
+        // Start animation
+        // animateDot(); 
+        // Note: CSS Animation is better for simple movement, but JS requested. 
+        // Adding inline keyframes for smoother result without external CSS
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes flowMove {
+                0% { transform: translateX(-60px) translateY(-50%); opacity: 0; }
+                10% { opacity: 1; }
+                40% { opacity: 0; } /* Fade out at lock */
+                60% { opacity: 0; } /* Stay hidden at lock */
+                90% { opacity: 1; }
+                100% { transform: translateX(60px) translateY(-50%); opacity: 0; }
+            }
+            #dot1 {
+                animation: flowMove 2s infinite linear;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>

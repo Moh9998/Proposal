@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fraud Prevention System - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Card Styles */
+        .fraud-card {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate-800/50 */
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fraud-card:hover {
+            background-color: rgba(30, 41, 59, 0.8);
+            border-color: rgba(234, 179, 8, 0.5); /* Yellow-500 */
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon-bg {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        /* Specific Card Accents */
+        .accent-blue { border-top: 3px solid #3b82f6; }
+        .accent-purple { border-top: 3px solid #a855f7; }
+        .accent-orange { border-top: 3px solid #f97316; }
+        .accent-red { border-top: 3px solid #ef4444; }
+
+        /* Scanning Line Animation for ID Card */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #3b82f6;
+            box-shadow: 0 0 10px #3b82f6;
+            animation: scan 3s infinite linear;
+            opacity: 0.5;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Tag Styles */
+        .tech-tag {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+            font-family: 'Inter', monospace;
+        }
+
+        /* Background blur shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-shape" style="top: -100px; right: -100px; width: 500px; height: 500px; background-color: rgba(59, 130, 246, 0.05);"></div>
+<div class="bg-shape" style="bottom: -100px; left: -100px; width: 400px; height: 400px; background-color: rgba(234, 179, 8, 0.03);"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Fraud Prevention System</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-8 z-10 space-x-12">
+<!-- Left Column: Overview -->
+<div class="w-1/3 flex flex-col justify-center">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-white mb-4 leading-tight">
+                        Multi-Layered <br/>
+<span class="text-red-500">Risk Intelligence</span>
+</h2>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        NCSS-IQ employs a defense-in-depth strategy combining traditional rules engines with advanced machine learning to detect fraud in real-time across the lending ecosystem.
+                    </p>
+<!-- Stats Box -->
+<div class="bg-slate-800 bg-opacity-50 border border-gray-700 rounded-lg p-5">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-700">
+<div>
+<p class="text-xs text-gray-500 uppercase tracking-wide">Detection Latency</p>
+<p class="text-xl font-bold text-white">&lt; 200ms</p>
+</div>
+<div class="text-right">
+<p class="text-xs text-gray-500 uppercase tracking-wide">False Positive Rate</p>
+<p class="text-xl font-bold text-green-400">&lt; 0.5%</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<i class="fas fa-shield-alt text-yellow-500 text-2xl"></i>
+<div>
+<p class="text-xs font-bold text-white">Active Protection</p>
+<p class="text-[10px] text-gray-400">24/7 Monitoring across all APIs</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: 2x2 Grid -->
+<div class="w-2/3 grid grid-cols-2 grid-rows-2 gap-6 h-full pb-4">
+<!-- Card 1: Identity Fraud -->
+<div class="fraud-card accent-blue">
+<div class="flex justify-between items-start mb-2">
+<div class="card-icon-bg bg-blue-900 bg-opacity-30">
+<i class="fas fa-id-card text-blue-400 text-lg"></i>
+</div>
+<span class="text-[10px] font-bold text-blue-400 bg-blue-900 bg-opacity-20 px-2 py-1 rounded">KYC / AML</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Identity Defense</h3>
+<p class="text-xs text-gray-400 mb-4">Detects synthetic IDs, deceased profiles, and stolen credentials using gov registry cross-checks.</p>
+<!-- Visual: ID Check -->
+<div class="flex-1 bg-slate-900 rounded-lg relative overflow-hidden flex items-center justify-center border border-slate-700">
+<div class="scan-line"></div>
+<div class="flex space-x-4 opacity-80">
+<div class="w-12 h-16 bg-slate-700 rounded border border-slate-600"></div>
+<div class="flex flex-col space-y-2 justify-center">
+<div class="w-20 h-2 bg-slate-700 rounded"></div>
+<div class="w-16 h-2 bg-slate-700 rounded"></div>
+<div class="flex items-center space-x-1 mt-1">
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+<span class="text-[8px] text-green-400 uppercase">Verified</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 flex space-x-2">
+<span class="tech-tag">Biometric Match</span>
+<span class="tech-tag">OCR Analysis</span>
+</div>
+</div>
+<!-- Card 2: Loan Stacking -->
+<div class="fraud-card accent-orange">
+<div class="flex justify-between items-start mb-2">
+<div class="card-icon-bg bg-orange-900 bg-opacity-30">
+<i class="fas fa-layer-group text-orange-400 text-lg"></i>
+</div>
+<span class="text-[10px] font-bold text-orange-400 bg-orange-900 bg-opacity-20 px-2 py-1 rounded">Velocity</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Loan Stacking</h3>
+<p class="text-xs text-gray-400 mb-4">Prevents multiple simultaneous loan applications across different lenders within short windows.</p>
+<!-- Visual: Timeline -->
+<div class="flex-1 bg-slate-900 rounded-lg p-3 relative flex items-center border border-slate-700">
+<div class="w-full h-1 bg-slate-700 absolute top-1/2 transform -translate-y-1/2"></div>
+<!-- Events -->
+<div class="absolute top-1/2 left-4 w-3 h-3 bg-gray-500 rounded-full border-2 border-slate-900 transform -translate-y-1/2"></div>
+<div class="absolute top-1/2 left-1/3 w-3 h-3 bg-gray-500 rounded-full border-2 border-slate-900 transform -translate-y-1/2"></div>
+<!-- Alert Event -->
+<div class="absolute top-1/2 right-1/4 w-4 h-4 bg-orange-500 rounded-full border-2 border-white transform -translate-y-1/2 shadow-lg z-10"></div>
+<div class="absolute top-1/4 right-1/4 transform -translate-y-full -translate-x-1/2 bg-orange-900 text-orange-200 text-[9px] px-1 py-0.5 rounded border border-orange-700 whitespace-nowrap">
+                            Velocity Alert
+                        </div>
+</div>
+<div class="mt-3 flex space-x-2">
+<span class="tech-tag">Cross-Lender Check</span>
+<span class="tech-tag">Time-Windowing</span>
+</div>
+</div>
+<!-- Card 3: Behavioral Anomaly -->
+<div class="fraud-card accent-purple">
+<div class="flex justify-between items-start mb-2">
+<div class="card-icon-bg bg-purple-900 bg-opacity-30">
+<i class="fas fa-fingerprint text-purple-400 text-lg"></i>
+</div>
+<span class="text-[10px] font-bold text-purple-400 bg-purple-900 bg-opacity-20 px-2 py-1 rounded">Device Intel</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Behavioral Anomaly</h3>
+<p class="text-xs text-gray-400 mb-2">Analyzes device fingerprint, geolocation consistency, and application patterns.</p>
+<!-- Visual: Radar Chart -->
+<div class="flex-1 relative h-24 w-full flex items-center justify-center">
+<canvas id="behaviorChart"></canvas>
+</div>
+<div class="mt-3 flex space-x-2">
+<span class="tech-tag">Device Fingerprint</span>
+<span class="tech-tag">Geo-Fencing</span>
+</div>
+</div>
+<!-- Card 4: Network Analysis -->
+<div class="fraud-card accent-red">
+<div class="flex justify-between items-start mb-2">
+<div class="card-icon-bg bg-red-900 bg-opacity-30">
+<i class="fas fa-circle-nodes text-red-400 text-lg"></i>
+</div>
+<span class="text-[10px] font-bold text-red-400 bg-red-900 bg-opacity-20 px-2 py-1 rounded">Graph AI</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Fraud Rings</h3>
+<p class="text-xs text-gray-400 mb-2">Uncovers hidden relationships between applicants, guarantors, and known fraudsters.</p>
+<!-- Visual: Network Graph -->
+<div class="flex-1 bg-slate-900 rounded-lg relative overflow-hidden border border-slate-700">
+<canvas class="w-full h-full" id="networkCanvas"></canvas>
+<div class="absolute bottom-1 right-2 text-[8px] text-red-400 font-mono">LINKED_ENTITY_DETECTED</div>
+</div>
+<div class="mt-3 flex space-x-2">
+<span class="tech-tag">Link Analysis</span>
+<span class="tech-tag">Group Detection</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 13</p>
+</div>
+</div>
+<script>
+        // Behavior Radar Chart
+        const ctxRadar = document.getElementById('behaviorChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Device', 'IP', 'Time', 'Typing', 'Loc'],
+                datasets: [{
+                    label: 'Risk Score',
+                    data: [20, 85, 30, 40, 90],
+                    backgroundColor: 'rgba(168, 85, 247, 0.2)', // Purple
+                    borderColor: '#a855f7',
+                    pointBackgroundColor: '#a855f7',
+                    pointRadius: 2,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { 
+                            color: '#94a3b8',
+                            font: { size: 8 }
+                        },
+                        ticks: { display: false, maxTicksLimit: 3 }
+                    }
+                }
+            }
+        });
+
+        // Simple Network Graph Animation on Canvas
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Resize canvas
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+
+        const nodes = [
+            {x: 0.5, y: 0.5, r: 5, color: '#ef4444'}, // Center Fraudster
+            {x: 0.3, y: 0.3, r: 3, color: '#94a3b8'},
+            {x: 0.7, y: 0.3, r: 3, color: '#94a3b8'},
+            {x: 0.2, y: 0.6, r: 3, color: '#94a3b8'},
+            {x: 0.8, y: 0.6, r: 3, color: '#94a3b8'},
+            {x: 0.5, y: 0.8, r: 3, color: '#94a3b8'}
+        ];
+
+        function drawNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // Draw connections
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+            ctx.lineWidth = 1;
+            
+            const cx = nodes[0].x * w;
+            const cy = nodes[0].y * h;
+
+            // Connect all to center
+            for(let i=1; i<nodes.length; i++) {
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(nodes[i].x * w, nodes[i].y * h);
+                ctx.stroke();
+            }
+
+            // Draw Nodes
+            nodes.forEach((node, i) => {
+                ctx.beginPath();
+                ctx.arc(node.x * w, node.y * h, node.r, 0, Math.PI * 2);
+                ctx.fillStyle = node.color;
+                ctx.fill();
+                
+                // Pulse effect for center
+                if(i === 0) {
+                    ctx.beginPath();
+                    ctx.arc(node.x * w, node.y * h, node.r + 4, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+                    ctx.stroke();
+                }
+            });
+        }
+
+        // Initial draw
+        drawNetwork();
+
+        // Simple animation loop for pulse
+        let pulseSize = 0;
+        function animate() {
+            pulseSize = (Date.now() / 1000) % 1; 
+            drawNetwork();
+            // Draw dynamic pulse
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = nodes[0].x * w;
+            const cy = nodes[0].y * h;
+            
+            ctx.beginPath();
+            ctx.arc(cx, cy, 5 + (pulseSize * 15), 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(239, 68, 68, ${1 - pulseSize})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

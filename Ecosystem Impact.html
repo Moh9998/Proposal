@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecosystem Impact - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        /* Background accents */
+        .bg-accent-glow {
+            background-color: rgba(234, 179, 8, 0.05); /* Yellow-500 very low opacity */
+        }
+        .bg-circle-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+        
+        /* Node Styling */
+        .center-node {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: #0f172a;
+            border: 4px solid #eab308;
+            box-shadow: 0 0 40px rgba(234, 179, 8, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .satellite-node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #1e293b; /* Slate-800 */
+            border: 2px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .satellite-node:hover {
+            transform: scale(1.1);
+            border-color: #eab308;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+        }
+
+        /* Connector Lines */
+        .connection-line {
+            position: absolute;
+            background-color: #334155;
+            height: 2px;
+            transform-origin: 0 50%;
+            z-index: 5;
+        }
+        
+        /* Data Flow Animation Dots */
+        .data-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #eab308;
+            z-index: 6;
+            opacity: 0.8;
+        }
+
+        /* Legend Item */
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Specific Node Colors */
+        .node-bank { border-color: #3b82f6; } /* Blue */
+        .node-fintech { border-color: #a855f7; } /* Purple */
+        .node-gov { border-color: #ef4444; } /* Red */
+        .node-telco { border-color: #f97316; } /* Orange */
+        .node-citizen { border-color: #10b981; } /* Green */
+        .node-utility { border-color: #06b6d4; } /* Cyan */
+
+        /* Icon Colors */
+        .icon-bank { color: #3b82f6; }
+        .icon-fintech { color: #a855f7; }
+        .icon-gov { color: #ef4444; }
+        .icon-telco { color: #f97316; }
+        .icon-citizen { color: #10b981; }
+        .icon-utility { color: #06b6d4; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-circle-glow" style="width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(30, 41, 59, 0.6);"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-90">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Ecosystem Impact</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex px-16 py-8 relative z-10">
+<!-- Left Panel: Context -->
+<div class="w-1/4 flex flex-col justify-center pr-8 z-30">
+<h2 class="text-3xl font-bold mb-6 leading-tight">
+                    Connecting the <br/>
+<span class="text-yellow-500">Financial Data Ecosystem</span>
+</h2>
+<p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                    NCSS-IQ serves as the central intelligence hub, aggregating disparate data sources to create a unified view of creditworthiness across the entire Iraqi economy.
+                </p>
+<div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg border border-gray-700">
+<p class="text-xs font-bold text-gray-300 uppercase mb-3">Data Flow Legend</p>
+<div class="legend-item">
+<div class="legend-dot bg-blue-500"></div>
+<p class="text-xs text-gray-400">Credit Reporting Data</p>
+</div>
+<div class="legend-item">
+<div class="legend-dot bg-green-500"></div>
+<p class="text-xs text-gray-400">Alternative Data Signals</p>
+</div>
+<div class="legend-item">
+<div class="legend-dot bg-yellow-500"></div>
+<p class="text-xs text-gray-400">Score &amp; Risk Insights</p>
+</div>
+</div>
+</div>
+<!-- Right Panel: Diagram Container -->
+<div class="w-3/4 relative h-full flex items-center justify-center" id="diagram-container">
+<!-- Center Node (NCSS-IQ) -->
+<div class="center-node">
+<div class="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mb-2 shadow-inner">
+<i class="fas fa-brain text-white text-3xl"></i>
+</div>
+<p class="text-white font-bold text-sm">NCSS-IQ</p>
+<p class="text-yellow-500 text-xs font-mono">CORE HUB</p>
+</div>
+<!-- Satellite Nodes (Positioned via inline styles for circular layout) -->
+<!-- 1. Banks (Top) -->
+<div class="satellite-node node-bank" style="top: 15%; left: 50%; transform: translateX(-50%);">
+<i class="fas fa-university text-2xl icon-bank mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Banks &amp;<br/>Lenders</p>
+</div>
+<!-- 2. Fintech (Top Right) -->
+<div class="satellite-node node-fintech" style="top: 30%; right: 15%;">
+<i class="fas fa-mobile-alt text-2xl icon-fintech mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Fintech &amp;<br/>Wallets</p>
+</div>
+<!-- 3. Telecom (Bottom Right) -->
+<div class="satellite-node node-telco" style="bottom: 30%; right: 15%;">
+<i class="fas fa-satellite-dish text-2xl icon-telco mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Telecoms</p>
+</div>
+<!-- 4. Government (Bottom) -->
+<div class="satellite-node node-gov" style="bottom: 15%; left: 50%; transform: translateX(-50%);">
+<i class="fas fa-landmark text-2xl icon-gov mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Govt<br/>Systems</p>
+</div>
+<!-- 5. Utilities (Bottom Left) -->
+<div class="satellite-node node-utility" style="bottom: 30%; left: 15%;">
+<i class="fas fa-bolt text-2xl icon-utility mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Utilities</p>
+</div>
+<!-- 6. Citizens/SMEs (Top Left) -->
+<div class="satellite-node node-citizen" style="top: 30%; left: 15%;">
+<i class="fas fa-users text-2xl icon-citizen mb-1"></i>
+<p class="text-xs font-bold text-gray-200 text-center">Citizens &amp;<br/>SMEs</p>
+</div>
+<!-- Connection Lines (SVG Overlay) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+<!-- Lines from center to nodes -->
+<!-- Center to Top (Banks) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="50%" y1="50%" y2="22%"></line>
+<!-- Center to Top Right (Fintech) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="78%" y1="50%" y2="35%"></line>
+<!-- Center to Bottom Right (Telco) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="78%" y1="50%" y2="65%"></line>
+<!-- Center to Bottom (Gov) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="50%" y1="50%" y2="78%"></line>
+<!-- Center to Bottom Left (Utility) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="22%" y1="50%" y2="65%"></line>
+<!-- Center to Top Left (Citizens) -->
+<line stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="22%" y1="50%" y2="35%"></line>
+<!-- Animated data flow circles (static representation) -->
+<circle cx="50%" cy="36%" fill="#3b82f6" opacity="0.8" r="3"></circle>
+<circle cx="64%" cy="42%" fill="#a855f7" opacity="0.8" r="3"></circle>
+<circle cx="64%" cy="58%" fill="#f97316" opacity="0.8" r="3"></circle>
+<circle cx="50%" cy="64%" fill="#ef4444" opacity="0.8" r="3"></circle>
+<circle cx="36%" cy="58%" fill="#06b6d4" opacity="0.8" r="3"></circle>
+<circle cx="36%" cy="42%" fill="#10b981" opacity="0.8" r="3"></circle>
+</svg>
+<!-- Labels for Data Flow (positioned near lines) -->
+<div class="absolute text-xs text-blue-400 bg-gray-900 px-2 py-0.5 rounded border border-blue-900" style="top: 35%; left: 51%;">Loan Data</div>
+<div class="absolute text-xs text-purple-400 bg-gray-900 px-2 py-0.5 rounded border border-purple-900" style="top: 40%; right: 30%;">Transfers</div>
+<div class="absolute text-xs text-orange-400 bg-gray-900 px-2 py-0.5 rounded border border-orange-900" style="bottom: 40%; right: 30%;">Bill Pay</div>
+<div class="absolute text-xs text-red-400 bg-gray-900 px-2 py-0.5 rounded border border-red-900" style="bottom: 35%; left: 51%;">ID/Tax</div>
+<div class="absolute text-xs text-cyan-400 bg-gray-900 px-2 py-0.5 rounded border border-cyan-900" style="bottom: 40%; left: 30%;">Payment History</div>
+<div class="absolute text-xs text-green-400 bg-gray-900 px-2 py-0.5 rounded border border-green-900" style="top: 40%; left: 30%;">Credit Scores</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-80 z-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 6</p>
+</div>
+</div>
+</body>
+</html>

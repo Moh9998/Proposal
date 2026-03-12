@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Model - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Card Styles */
+        .finance-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Typography */
+        .mono-stat {
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        /* Stream Item */
+        .stream-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .stream-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 12px;
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+        }
+
+        /* Custom Table */
+        .finance-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        
+        .finance-table th {
+            text-align: left;
+            padding: 8px;
+            color: #94a3b8;
+            border-bottom: 1px solid #334155;
+            font-weight: 600;
+        }
+        
+        .finance-table td {
+            padding: 8px;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            font-family: 'Roboto Mono', monospace;
+            color: #cbd5e1;
+        }
+
+        .finance-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(51, 65, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container bg-grid">
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-30 border-b border-gray-800 bg-slate-900 bg-opacity-95">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-chart-line text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Financial Model</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 w-full flex p-10 gap-8 relative z-10">
+<!-- Left Column: Investment & Cost Structure (35%) -->
+<div class="w-4/12 flex flex-col gap-6">
+<!-- Investment Card -->
+<div class="finance-card flex-none">
+<div class="section-title"><i class="fas fa-coins text-yellow-500"></i>Required Investment</div>
+<div class="flex items-baseline mb-4">
+<h2 class="text-4xl font-bold text-white mono-stat">$70M - $90M</h2>
+<span class="text-sm text-gray-400 ml-2">Total Funding</span>
+</div>
+<p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                    Capital requirement for end-to-end infrastructure build, data acquisition, and 24-month operational runway.
+                </p>
+<div class="h-48 chart-container">
+<canvas id="investmentChart"></canvas>
+</div>
+</div>
+<!-- Cost Structure Card -->
+<div class="finance-card flex-1">
+<div class="section-title"><i class="fas fa-file-invoice-dollar text-red-400"></i>Cost Structure</div>
+<div class="space-y-3 mt-2">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-bold text-white">CapEx</p>
+<p class="text-[10px] text-gray-400">Platform, Data Center, License</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white mono-stat">65%</p>
+<p class="text-[10px] text-gray-400">Year 1-2</p>
+</div>
+</div>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-[65%]"></div>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div>
+<p class="text-sm font-bold text-white">OpEx</p>
+<p class="text-[10px] text-gray-400">Staff, Compliance, Maintenance</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white mono-stat">35%</p>
+<p class="text-[10px] text-gray-400">Recurring</p>
+</div>
+</div>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-[35%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Revenue Model & Projections (65%) -->
+<div class="w-8/12 flex flex-col gap-6">
+<!-- Revenue Streams -->
+<div class="finance-card flex-none">
+<div class="section-title"><i class="fas fa-hand-holding-dollar text-green-400"></i>Revenue Streams</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="stream-item">
+<div class="stream-icon bg-blue-900 bg-opacity-30 text-blue-400">
+<i class="fas fa-file-alt"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Credit Reports</p>
+<p class="text-[10px] text-gray-400">Per-pull fee from lenders</p>
+</div>
+</div>
+<div class="stream-item">
+<div class="stream-icon bg-purple-900 bg-opacity-30 text-purple-400">
+<i class="fas fa-laptop-code"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">API Usage</p>
+<p class="text-[10px] text-gray-400">Tiered subscription access</p>
+</div>
+</div>
+<div class="stream-item">
+<div class="stream-icon bg-red-900 bg-opacity-30 text-red-400">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Fraud Services</p>
+<p class="text-[10px] text-gray-400">Identity verification checks</p>
+</div>
+</div>
+<div class="stream-item">
+<div class="stream-icon bg-yellow-900 bg-opacity-30 text-yellow-400">
+<i class="fas fa-chart-pie"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-white">SME Analytics</p>
+<p class="text-[10px] text-gray-400">Market insights &amp; scoring</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Financial Projections Chart -->
+<div class="finance-card flex-1">
+<div class="flex justify-between items-center mb-4">
+<div class="section-title mb-0"><i class="fas fa-chart-bar text-blue-400"></i>5-Year Financial Outlook</div>
+<div class="flex space-x-4 text-[10px] text-gray-400">
+<div class="flex items-center"><div class="w-3 h-3 bg-blue-500 rounded-sm mr-2"></div>Revenue</div>
+<div class="flex items-center"><div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>EBITDA</div>
+</div>
+</div>
+<div class="chart-container">
+<canvas id="projectionChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs bg-gray-900 bg-opacity-80 z-30">
+<p class="text-gray-500">Note: Financial projections are estimates based on regional benchmarks.</p>
+<p class="text-gray-600">Page 21</p>
+</div>
+</div>
+<script>
+        // Investment Breakdown Doughnut Chart
+        const ctxInv = document.getElementById('investmentChart').getContext('2d');
+        new Chart(ctxInv, {
+            type: 'doughnut',
+            data: {
+                labels: ['Technology Platform', 'Data Acquisition', 'Operations & Legal', 'Marketing', 'Contingency'],
+                datasets: [{
+                    data: [40, 20, 20, 10, 10],
+                    backgroundColor: [
+                        '#3b82f6', // Blue
+                        '#8b5cf6', // Violet
+                        '#10b981', // Emerald
+                        '#f59e0b', // Amber
+                        '#64748b'  // Slate
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#94a3b8',
+                            font: { size: 10, family: "'Inter', sans-serif" },
+                            boxWidth: 10,
+                            padding: 10
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Financial Projection Bar/Line Combo Chart
+        const ctxProj = document.getElementById('projectionChart').getContext('2d');
+        new Chart(ctxProj, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: [5, 18, 35, 52, 68],
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 4,
+                        order: 2
+                    },
+                    {
+                        label: 'EBITDA',
+                        data: [-12, -5, 8, 22, 35],
+                        type: 'line',
+                        borderColor: '#10b981',
+                        backgroundColor: '#10b981',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#0f172a',
+                        pointBorderColor: '#10b981',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        tension: 0.3,
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#cbd5e1',
+                        borderColor: '#334155',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { size: 11 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(51, 65, 85, 0.3)', borderDash: [5, 5] },
+                        ticks: { 
+                            color: '#94a3b8', 
+                            font: { size: 10 },
+                            callback: function(value) { return '$' + value + 'M'; }
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

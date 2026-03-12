@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Closing Vision - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@400;600;700;800&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Background Image */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://page.gensparksite.com/slides_images/5b11ccd73cd465e0281955453e847c94.webp");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        /* Overlay to ensure text readability without gradients */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.85);
+            z-index: 1;
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 80px;
+            text-align: center;
+        }
+
+        /* Typography */
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: #ffffff;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text {
+            color: #fbbf24; /* Amber-400 */
+        }
+
+        .subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: #cbd5e1;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        /* Decorative Elements */
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .divider {
+            width: 120px;
+            height: 4px;
+            background-color: #3b82f6;
+            margin-bottom: 32px;
+            border-radius: 2px;
+        }
+
+        /* Pillars Container */
+        .pillars-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .pillar-item {
+            display: flex;
+            align-items: center;
+            background-color: rgba(30, 41, 59, 0.6);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .pillar-icon {
+            color: #fbbf24;
+            margin-right: 12px;
+        }
+
+        .pillar-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: #3b82f6;
+        }
+
+        /* Grid Pattern */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Layers -->
+<div class="bg-image"></div>
+<div class="overlay"></div>
+<div class="bg-grid"></div>
+<!-- Main Content -->
+<div class="content-wrapper">
+<!-- Logo Icon -->
+<div class="icon-circle">
+<i class="fas fa-layer-group text-3xl text-white"></i>
+</div>
+<!-- Title -->
+<h1 class="main-title">
+<p>Building Iraq's <span class="highlight-text">Financial Trust</span></p>
+<p>Infrastructure</p>
+</h1>
+<!-- Divider -->
+<div class="divider"></div>
+<!-- Subtitle -->
+<p class="subtitle">
+            NCSS-IQ will power the modern digital economy—enabling responsible lending, 
+            driving financial inclusion, and fostering fintech innovation across the nation.
+        </p>
+<!-- Pillars -->
+<div class="pillars-container">
+<div class="pillar-item">
+<i class="fas fa-check-circle pillar-icon"></i>
+<p class="pillar-text">Responsible Lending</p>
+</div>
+<div class="pillar-item">
+<i class="fas fa-users pillar-icon"></i>
+<p class="pillar-text">Financial Inclusion</p>
+</div>
+<div class="pillar-item">
+<i class="fas fa-rocket pillar-icon"></i>
+<p class="pillar-text">Fintech Innovation</p>
+</div>
+<div class="pillar-item">
+<i class="fas fa-chart-line pillar-icon"></i>
+<p class="pillar-text">Economic Growth</p>
+</div>
+</div>
+<!-- Call to Action Button Visual -->
+<div class="mt-4">
+<div class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold text-sm shadow-lg border border-blue-400 flex items-center">
+<span>Move to Phase 1 Approval</span>
+<i class="fas fa-arrow-right ml-3"></i>
+</div>
+</div>
+</div>
+<!-- Footer / Contact Info -->
+<div class="contact-box z-20">
+<div class="contact-item">
+<i class="fas fa-building"></i>
+<p>Central Bank of Iraq (CBI)</p>
+</div>
+<div class="contact-item">
+<i class="fas fa-globe"></i>
+<p>www.cbi.iq/ncss-project</p>
+</div>
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<p>infrastructure@cbi.iq</p>
+</div>
+<div class="contact-item">
+<p>Confidential Proposal • March 2026</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alternative Data Inclusion - NCSS-IQ</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Gradient-like effects using solid colors and opacity layers since gradients are restricted */
+        .bg-accent-light {
+            background-color: rgba(234, 179, 8, 0.05); /* Yellow-500 at 5% */
+        }
+        .data-source-card {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .data-source-card:hover {
+            transform: translateX(-5px);
+            background-color: rgba(30, 41, 59, 0.9); /* Slate-800 */
+            border-color: rgba(234, 179, 8, 0.3); /* Yellow border hint */
+        }
+        .funnel-graphic {
+            border-left: 1px dashed rgba(75, 85, 99, 0.5);
+            position: relative;
+        }
+        .funnel-point {
+            position: absolute;
+            left: -5px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #eab308;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-accent-light clip-path-polygon"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 border-l-2 border-b-2 border-gray-800 opacity-30 rounded-bl-3xl ml-12 mb-12"></div>
+<div class="absolute top-20 right-20 w-32 h-32 rounded-full border border-gray-800 opacity-20"></div>
+<!-- Header -->
+<div class="w-full h-24 px-16 flex items-center justify-between z-10 border-b border-gray-800 bg-gray-900 bg-opacity-50">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-yellow-600 rounded flex items-center justify-center shadow-lg">
+<i class="fas fa-layer-group text-white text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-yellow-500 font-bold tracking-widest uppercase">NCSS-IQ</p>
+<p class="text-white font-semibold text-lg">Alternative Data Strategy</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-gray-500 text-sm">National Credit Infrastructure Proposal</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex px-16 py-12 z-10 relative">
+<!-- Left Column: Vision Statement -->
+<div class="w-6/12 pr-12 flex flex-col justify-center">
+<div class="mb-6">
+<span class="inline-block px-3 py-1 bg-yellow-900 bg-opacity-30 border border-yellow-700 rounded-full text-yellow-500 text-xs font-bold tracking-wider uppercase mb-4">
+                        Inclusion Mechanism
+                    </span>
+<h2 class="text-5xl font-extrabold text-white leading-tight mb-6">
+                        Bridging the <br/>
+<span class="text-yellow-500">Credit Gap</span> for the<br/>
+                        Unbanked
+                    </h2>
+<div class="w-20 h-1 bg-yellow-600 mb-8"></div>
+</div>
+<div class="space-y-6">
+<p class="text-xl text-gray-300 leading-relaxed font-light">
+                        Traditional credit scoring excludes millions of financially active Iraqis. We leverage <span class="text-white font-medium">non-traditional data footprints</span> to build comprehensive risk profiles for "thin-file" individuals.
+                    </p>
+<div class="bg-gray-800 bg-opacity-40 p-5 rounded-lg border-l-4 border-yellow-500">
+<p class="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-2">The Impact</p>
+<p class="text-white text-lg font-medium">
+                            Enables immediate credit access for <span class="text-yellow-400">40%</span> of the currently excluded population.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Data Sources -->
+<div class="w-6/12 pl-8 border-l border-gray-800 flex flex-col justify-center relative">
+<p class="text-sm text-gray-400 uppercase tracking-widest font-bold mb-8 pl-2">Alternative Data Sources</p>
+<div class="grid grid-cols-1 gap-4 relative z-10">
+<!-- Source 1: Telecom -->
+<div class="data-source-card bg-gray-900 bg-opacity-60 p-5 rounded-xl border border-gray-700 flex items-center space-x-5">
+<div class="w-14 h-14 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center border border-blue-800 flex-shrink-0 shadow-inner">
+<i class="fas fa-mobile-alt text-blue-400 text-2xl"></i>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-bold text-lg mb-1">Telecom Data</h3>
+<p class="text-gray-400 text-sm">Postpaid bill consistency, prepaid top-up frequency, and device history.</p>
+</div>
+<div class="text-blue-500 opacity-50"><i class="fas fa-chevron-right"></i></div>
+</div>
+<!-- Source 2: Utilities -->
+<div class="data-source-card bg-gray-900 bg-opacity-60 p-5 rounded-xl border border-gray-700 flex items-center space-x-5">
+<div class="w-14 h-14 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center border border-green-800 flex-shrink-0 shadow-inner">
+<i class="fas fa-bolt text-green-400 text-2xl"></i>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-bold text-lg mb-1">Utility Payments</h3>
+<p class="text-gray-400 text-sm">Electricity and water bill payment regularity serves as a strong proxy for stability.</p>
+</div>
+<div class="text-green-500 opacity-50"><i class="fas fa-chevron-right"></i></div>
+</div>
+<!-- Source 3: Mobile Wallet -->
+<div class="data-source-card bg-gray-900 bg-opacity-60 p-5 rounded-xl border border-gray-700 flex items-center space-x-5">
+<div class="w-14 h-14 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center border border-purple-800 flex-shrink-0 shadow-inner">
+<i class="fas fa-wallet text-purple-400 text-2xl"></i>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-bold text-lg mb-1">Mobile Wallet Transactions</h3>
+<p class="text-gray-400 text-sm">Cash-in/out velocity, P2P transfer patterns, and merchant payments.</p>
+</div>
+<div class="text-purple-500 opacity-50"><i class="fas fa-chevron-right"></i></div>
+</div>
+<!-- Source 4: Salary Signals -->
+<div class="data-source-card bg-gray-900 bg-opacity-60 p-5 rounded-xl border border-gray-700 flex items-center space-x-5">
+<div class="w-14 h-14 rounded-full bg-yellow-900 bg-opacity-30 flex items-center justify-center border border-yellow-800 flex-shrink-0 shadow-inner">
+<i class="fas fa-money-bill-wave text-yellow-400 text-2xl"></i>
+</div>
+<div class="flex-1">
+<h3 class="text-white font-bold text-lg mb-1">Income Signals</h3>
+<p class="text-gray-400 text-sm">Recurring deposit patterns, gig economy earnings, and government disbursements.</p>
+</div>
+<div class="text-yellow-500 opacity-50"><i class="fas fa-chevron-right"></i></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="h-12 border-t border-gray-800 px-16 flex items-center justify-between text-xs text-gray-600 bg-gray-900 bg-opacity-30">
+<p>National Credit Scoring System (NCSS-IQ)</p>
+<p>Confidential &amp; Proprietary</p>
+<p>Page 9</p>
+</div>
+</div>
+</body>
+</html>

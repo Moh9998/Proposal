@@ -230,9 +230,43 @@
     transform-origin: top left;
   }
 
-  /* fade transition */
-  #slide-wrapper { transition: opacity .18s ease; }
-  #slide-wrapper.fading { opacity: 0; }
+  /* slide transition animations */
+  #slide-wrapper {
+    transition: opacity .2s ease;
+    will-change: transform, opacity, filter;
+  }
+  #slide-wrapper.trans-out-left  { animation: slideOutLeft .24s cubic-bezier(.4,0,.2,1) forwards; }
+  #slide-wrapper.trans-out-right { animation: slideOutRight .24s cubic-bezier(.4,0,.2,1) forwards; }
+  #slide-wrapper.trans-in-left   { animation: slideInLeft .28s cubic-bezier(.22,1,.36,1) forwards; }
+  #slide-wrapper.trans-in-right  { animation: slideInRight .28s cubic-bezier(.22,1,.36,1) forwards; }
+
+  @keyframes slideOutLeft {
+    from { opacity: 1; transform: scale(var(--stage-scale, 1)) translateX(0); filter: blur(0); }
+    to   { opacity: 0; transform: scale(var(--stage-scale, 1)) translateX(-48px); filter: blur(1.5px); }
+  }
+  @keyframes slideOutRight {
+    from { opacity: 1; transform: scale(var(--stage-scale, 1)) translateX(0); filter: blur(0); }
+    to   { opacity: 0; transform: scale(var(--stage-scale, 1)) translateX(48px); filter: blur(1.5px); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: scale(var(--stage-scale, 1)) translateX(54px); filter: blur(1.5px); }
+    to   { opacity: 1; transform: scale(var(--stage-scale, 1)) translateX(0); filter: blur(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: scale(var(--stage-scale, 1)) translateX(-54px); filter: blur(1.5px); }
+    to   { opacity: 1; transform: scale(var(--stage-scale, 1)) translateX(0); filter: blur(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #slide-wrapper,
+    #slide-wrapper.trans-out-left,
+    #slide-wrapper.trans-out-right,
+    #slide-wrapper.trans-in-left,
+    #slide-wrapper.trans-in-right {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 
   /* ─── Arrow Nav ─────────────────────────────────────── */
   .nav-arrow {
@@ -540,6 +574,7 @@ const SLIDES = [
 
 // ── State ──────────────────────────────────────────────
 let current = 0;
+let isAnimating = false;
 
 // ── Elements ───────────────────────────────────────────
 const mainFrame      = document.getElementById('main-frame');
@@ -614,6 +649,7 @@ function scaleStage() {
   slideWrapper.style.width  = '1280px';
   slideWrapper.style.height = '720px';
   slideWrapper.style.transform = `scale(${scale})`;
+  slideWrapper.style.setProperty('--stage-scale', String(scale));
   slideWrapper.style.transformOrigin = 'center center';
 }
 
@@ -669,13 +705,19 @@ resizeObs.observe(document.getElementById('stage'));
 scaleStage();
 
 // ── Navigate ───────────────────────────────────────────
-function goTo(index, fast) {
+function clearTransitionClasses() {
+  slideWrapper.classList.remove('trans-out-left', 'trans-out-right', 'trans-in-left', 'trans-in-right', 'fading');
+}
+
+function goTo(index, fast, direction) {
   if (index < 0 || index >= SLIDES.length) return;
+  if (isAnimating && !fast) return;
 
-  // fade out
-  slideWrapper.classList.add('fading');
+  const dir = direction || (index > current ? 'next' : index < current ? 'prev' : 'next');
+  const outClass = dir === 'prev' ? 'trans-out-right' : 'trans-out-left';
+  const inClass = dir === 'prev' ? 'trans-in-right' : 'trans-in-left';
 
-  setTimeout(() => {
+  const updateSlideState = () => {
     current = index;
     mainFrame.src = SLIDES[index].file;
 
@@ -703,9 +745,31 @@ function goTo(index, fast) {
     btnPrev2.disabled = index === 0;
     btnNext2.disabled = index === SLIDES.length - 1;
 
-    // fade in
-    slideWrapper.classList.remove('fading');
-  }, fast ? 0 : 120);
+  };
+
+  if (fast) {
+    clearTransitionClasses();
+    updateSlideState();
+    return;
+  }
+
+  isAnimating = true;
+  clearTransitionClasses();
+  slideWrapper.classList.add(outClass);
+
+  setTimeout(() => {
+    clearTransitionClasses();
+    updateSlideState();
+    slideWrapper.classList.add(inClass);
+
+    const finishIn = () => {
+      clearTransitionClasses();
+      isAnimating = false;
+    };
+
+    mainFrame.addEventListener('load', finishIn, { once: true });
+    setTimeout(finishIn, 360);
+  }, 230);
 }
 
 // Initial load
